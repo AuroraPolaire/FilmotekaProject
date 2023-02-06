@@ -1,2 +1,14 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/base';
+@import './base/container';
+
+@import './components/buttons';
+@import './components/movie-modal';
+@import './components/team-modal';
+
+@import './layout/home-header';
+@import './layout/main-section';
+@import './layout/library-header';
+@import './layout/footer';
+
+@import './utils/vars';

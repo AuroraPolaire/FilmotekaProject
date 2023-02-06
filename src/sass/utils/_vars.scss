@@ -1,0 +1,17 @@
+:root {
+  --primary-font: 'Roboto', sans-serif;
+  --background-main: #e5e5e5;
+  --background-footer: #f7f7f7;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --text-footer: #545454;
+  --accent: #ff6b08;
+  --accent-2: #ff001b;
+
+  // BUTTONS COLORS
+  --button-font: 'Roboto', sans-serif;
+  --hover: #ff6b01;
+
+  // TRANSITIONS
+  --transition-dur-and-func: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
