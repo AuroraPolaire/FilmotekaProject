@@ -1,3 +1,9 @@
+
+import { pagination } from "./js/pagination";
+const page = pagination.getCurrentPage()
+console.log(page);
+
+
 import { refs } from './components/refs';
 import { themoviedbApi } from './components/themoviedb-service';
 
@@ -24,3 +30,4 @@ const getTrendingMovies = async () => {
   }
 };
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
+
