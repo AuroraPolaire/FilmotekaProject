@@ -8,6 +8,8 @@ const onSubmitSearchMoviesForm = async e => {
   try {
     const moeviesData = await themoviedbApi.searchMovies();
     console.log('searchMovies', moeviesData);
+    //   console.log(await themoviedbApi.getMovieById(18239));
+    // console.log(await themoviedbApi.getMovieTrailer(18239));
   } catch (error) {
     console.log(error);
   }

@@ -5,7 +5,6 @@ class ThemoviedbApi {
   static URL = 'https://api.themoviedb.org/';
 
   constructor() {
-    this.ApiKey = '';
     this.searchQuery = '';
     this.page = 1;
   }
@@ -20,6 +19,20 @@ class ThemoviedbApi {
   async getTrendingMovies() {
     const { data } = await Axios.get(
       `${ThemoviedbApi.URL}3/trending/all/day?api_key=${ThemoviedbApi.API_KEY}`
+    );
+    return data;
+  }
+
+  async getMovieById(movie_id) {
+    const { data } = await Axios.get(
+      `${ThemoviedbApi.URL}3/movie/${movie_id}?api_key=${ThemoviedbApi.API_KEY}`
+    );
+    return data;
+  }
+
+  async getMovieTrailer(movie_id) {
+    const { data } = await Axios.get(
+      `${ThemoviedbApi.URL}3/movie/${movie_id}/videos?api_key=${ThemoviedbApi.API_KEY}`
     );
     return data;
   }
