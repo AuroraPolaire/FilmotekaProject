@@ -1,7 +1,6 @@
 import { movieData } from '../index';
 
 function renderTrendingMovies(data) {
-  console.log(data.movies);
   return data.movies
     .map(({ title, poster_path, release_date, genre_ids }) => {
       return `
