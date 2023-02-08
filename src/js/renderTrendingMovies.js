@@ -15,7 +15,9 @@ function renderTrendingMovies(data) {
 		<div class="movie-card__wrp">
 			<p class="movie-card__title">
 				${title} <br />
-				<span class="movie-card__info">${data.getMovieGenresPreview(genre_ids)}</span>
+				<span class="movie-card__info">${data.getMovieGenresPreview(
+          genre_ids
+        )} | ${release_date}</span>
 			</p>
 		</div>
 	</li>`;
