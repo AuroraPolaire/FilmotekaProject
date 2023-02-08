@@ -30,27 +30,29 @@ const onSubmitSearchMoviesForm = async e => {
 
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
-function initData() {
-  Promise.all([
-    themoviedbApi.getGenresOfMovies(),
-    themoviedbApi.getTrendingMovies(),
-  ])
-    .then(data => {
+const renderTrendingMovies = async () => {
+  try {
+    await Promise.all([
+      themoviedbApi.getGenresOfMovies(),
+      themoviedbApi.getTrendingMovies(),
+    ]).then(data => {
       const [genres, movies] = data;
 
       movieData.genres = genres;
       movieData.movies = movies.results;
 
       renderMovieMarkup(movieData);
-    })
-    .catch(error => console.log(error).finally());
-}
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 function renderMovieMarkup(movieData) {
   refs.movieContainer.innerHTML = renderMovies(movieData);
 }
 
-initData();
+renderTrendingMovies();
 
 // Pagination
 const page = pagination.getCurrentPage();
