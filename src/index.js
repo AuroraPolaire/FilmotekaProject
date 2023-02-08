@@ -1,8 +1,7 @@
-import { onCardClick } from "./js/onCardClick";
-import { pagination } from "./js/pagination";
+import { onCardClick } from './js/onCardClick';
+import { pagination } from './js/pagination';
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
-
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
@@ -12,7 +11,7 @@ const onSubmitSearchMoviesForm = async e => {
     const moeviesData = await themoviedbApi.searchMovies();
     console.log('searchMovies', moeviesData);
     //   console.log(await themoviedbApi.getMovieById(18239));
-    // console.log(await themoviedbApi.getMovieTrailer(18239));
+    // console.log(await themoviedbApi.getMovieTrailer(10147));
   } catch (error) {
     console.log(error);
   }
@@ -30,17 +29,14 @@ const getTrendingMovies = async () => {
 };
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
-
-
-// Pagination 
-const page = pagination.getCurrentPage()
+// Pagination
+const page = pagination.getCurrentPage();
 pagination.on('afterMove', async event => {
-    const currentPage = event.page;
-    try {
-        const { data } = await themoviedbApi.getTrendingMovies(currentPage); 
-        // mark up function should be added here
-    }
-    catch (error) {
-        console.log(error);
-    }
+  const currentPage = event.page;
+  try {
+    const { data } = await themoviedbApi.getTrendingMovies(currentPage);
+    // mark up function should be added here
+  } catch (error) {
+    console.log(error);
+  }
 });

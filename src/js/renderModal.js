@@ -1,15 +1,41 @@
-function createModalInfo({ title, original_title, overview, popularity, poster_path, vote_average, vote_count, genres }) {
-  const genresString = genres.map(el => { return el.name }).join(", ");
-    return `
+YOUTUBE_URL = 'https://www.youtube.com/embed/';
+
+// Поки що винесла картинку, поки не вирішили як відображати
+`<img
+  class="modal__poster"
+  src="https://image.tmdb.org/t/p/w500${poster_path}"
+  alt="${title} movie poster"
+/>;`;
+
+function createModalInfo(
+  {
+    title,
+    original_title,
+    overview,
+    popularity,
+    poster_path,
+    vote_average,
+    vote_count,
+    genres,
+  },
+  youtubeKey
+) {
+  const videoUrl = YOUTUBE_URL.concat(youtubeKey);
+  console.log(videoUrl);
+  const genresString = genres
+    .map(el => {
+      return el.name;
+    })
+    .join(', ');
+  return `
     <div class="modal">
       <button data-modal-close type="button" class="modal__close-button">
         X
       </button>
-      <img
-          class="modal__poster"
-          src="https://image.tmdb.org/t/p/w500${poster_path}"
-          alt="${title} movie poster"
-        />
+          <iframe width="420" height="315"
+src="${videoUrl}"> frameborder="0" allowfullscreen
+</iframe>
+      
       <div class="modal__info">
           <h1>${title}</h1>
           <div class="modal__info-container">
@@ -44,7 +70,7 @@ function createModalInfo({ title, original_title, overview, popularity, poster_p
             </button>
           </div>
         </div>
-      </div>`
+      </div>`;
 }
 
 export { createModalInfo };
