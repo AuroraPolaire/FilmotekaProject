@@ -10,7 +10,7 @@ const onSubmitSearchMoviesForm = async e => {
   const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
   themoviedbApi.searchQuery = searchQuery;
   try {
-    Promise.all([
+    await Promise.all([
       themoviedbApi.getGenresOfMovies(),
       themoviedbApi.searchMovies(),
     ]).then(data => {
