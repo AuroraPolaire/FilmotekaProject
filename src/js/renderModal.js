@@ -1,4 +1,4 @@
-YOUTUBE_URL = 'https://www.youtube.com/embed/';
+const YOUTUBE_URL = 'https://www.youtube.com/embed/';
 
 // Поки що винесла картинку, поки не вирішили як відображати
 `<img
