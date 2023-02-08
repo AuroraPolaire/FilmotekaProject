@@ -1,4 +1,4 @@
-.trending-movies_list {
+.trending-movies__list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@
   position: relative;
   border-radius: 5px;
   overflow: hidden;
-  max-width: 280px;
+  width: 280px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   cursor: pointer;
   transition: var(--transition-dur-and-func);
@@ -45,7 +45,7 @@
   color: var(--accent);
 }
 @media screen and (min-width: 768px) {
-  .trending-movies_list {
+  .trending-movies__list {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -53,7 +53,7 @@
     gap: 32px;
   }
   .trending-movie__card {
-    max-width: 336px;
+    width: 336px;
   }
   .trending-movie__img {
     width: 336px;
@@ -61,18 +61,19 @@
   }
 }
 @media screen and (min-width: 1280px) {
-  .trending-movies_list {
-    gap: 16px;
+  .trending-movies__list {
+    gap: 15px;
   }
   .trending-movie__card {
-    max-width: 395px;
+    width: 394px;
+    height: 670px;
   }
-  .trending-movies_img {
-    width: 395px;
+  .trending-movie__img {
+    width: 394px;
     height: 574px;
   }
   .movie-card__title {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
   }
   .movie-card__info {
