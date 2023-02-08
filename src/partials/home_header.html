@@ -2,9 +2,8 @@
   <div class="header__container container">
     <nav class="navigation">
       <a href="./index.html" class="header__logo-link link"
-        ><svg class="header__logo-icon">
-          <!-- <use href="./images/sprite.svg#icon-logo"></use> --></svg
-        ><span class="header__logo-title">Filmoteka</span></a
+        ><svg class="header__logo-icon" width="24" height="24">
+          <use href="./images/symbol-defs.svg#icon-film"></use></svg><span class="header__logo-title">Filmoteka</span></a
       >
 
       <ul class="header__site-nav-list list">
@@ -19,22 +18,22 @@
           >
         </li>
       </ul>
-
-      <div class="movie-search">
-        <form class="search-form">
-          <input
-            type="text"
-            class="search-form__input"
-            name="searchedMovie"
-            placeholder="Movie search"
-          />
-          <button type="submit">search</button>
-
-          <svg class="search-form__icon" width="12" height="12">
-            <!-- <use href="./images/sprite.svg#icon-search"></use> -->
-          </svg>
-        </form>
-      </div>
     </nav>
+
+    <div class="movie-search">
+      <form class="search-form">
+        <input
+          type="text"
+          class="search-form__input"
+          name="searchedMovie"
+          placeholder="Movie search"
+        />
+        <button type="submit" class="search-form__submit-btn">
+          <svg class="search-form__icon" width="12" height="12">
+            <use href="./images/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
   </div>
 </header>
