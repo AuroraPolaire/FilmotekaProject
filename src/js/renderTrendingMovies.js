@@ -1,4 +1,5 @@
 import { movieData } from '../index';
+import { initializeSlider, resetSlider } from './slider';
 
 function renderTrendingMovies(data) {
   console.log(data.movies);
