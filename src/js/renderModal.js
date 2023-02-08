@@ -29,6 +29,7 @@ function createModalInfo(
     .join(', ');
   return `
     <div class="modal">
+    
       <button data-modal-close type="button" class="modal__close-button">
         X
       </button>

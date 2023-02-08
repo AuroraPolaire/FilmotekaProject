@@ -3,6 +3,7 @@ import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
 
 // function onCardClick(event) {
+
 //   // const id = event.target.id;
 //   themoviedbApi.getMovieById(10147).then(result => {
 //     const modal = basicLightbox.create(createModalInfo(result), {
