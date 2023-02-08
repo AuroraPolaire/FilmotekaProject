@@ -25,8 +25,17 @@ class ThemoviedbApi {
 
   async getGenresOfMovies() {
     const url = `${ThemoviedbApi.URL}/3/genre/movie/list?api_key=${ThemoviedbApi.API_KEY}&language=en-US`;
-    const response = await Axios.get(url);
-    return new Map(response.data.genres.map(el => [el.id, el.name]));
+    const tvUrl = `${ThemoviedbApi.URL}/3/genre/tv/list?api_key=${ThemoviedbApi.API_KEY}&language=en-US`;
+
+    const responseFilmGenres = Axios.get(url);
+    const responseTVGenres = Axios.get(tvUrl);
+    return await Promise.all([responseFilmGenres, responseTVGenres]).then(
+      data => {
+        const genreList = [data[0].data.genres, data[1].data.genres].flat();
+        console.log(new Map(genreList.map(el => [el.id, el.name])));
+        return new Map(genreList.map(el => [el.id, el.name]));
+      }
+    );
   }
 
   async getMovieById(movie_id) {
