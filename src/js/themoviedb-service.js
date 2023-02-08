@@ -32,7 +32,6 @@ class ThemoviedbApi {
     return await Promise.all([responseFilmGenres, responseTVGenres]).then(
       data => {
         const genreList = [data[0].data.genres, data[1].data.genres].flat();
-        console.log(new Map(genreList.map(el => [el.id, el.name])));
         return new Map(genreList.map(el => [el.id, el.name]));
       }
     );

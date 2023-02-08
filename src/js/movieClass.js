@@ -4,9 +4,8 @@ class MovieData {
 
   getMovieGenresPreview(genreIdList) {
     const genresArray = genreIdList.map(id => this.#genres.get(id));
-    console.log(this.#genres);
+
     if (genresArray.length <= 1) {
-      console.log(genresArray);
       return genresArray.toString;
     }
 
