@@ -30,9 +30,9 @@ const onSubmitSearchMoviesForm = async e => {
 
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
-const renderTrendingMovies = async () => {
+const renderTrendingMovies = () => {
   try {
-    await Promise.all([
+    Promise.all([
       themoviedbApi.getGenresOfMovies(),
       themoviedbApi.getTrendingMovies(),
     ]).then(data => {

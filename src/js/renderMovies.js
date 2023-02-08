@@ -11,6 +11,7 @@ function renderMovies(data) {
         name,
         first_air_date,
       }) => {
+        console.log();
         if (!title) {
           return `
 	<li class="trending-movie__card">
@@ -25,7 +26,7 @@ function renderMovies(data) {
 				${name} <br />
 				<span class="movie-card__info">${data.getMovieGenresPreview(
           genre_ids
-        )} | ${first_air_date}</span>
+        )} | ${parseFloat(first_air_date)}</span>
 			</p>
 		</div>
 	</li>`;
@@ -43,7 +44,7 @@ function renderMovies(data) {
 				${title} <br />
 				<span class="movie-card__info">${data.getMovieGenresPreview(
           genre_ids
-        )} | ${release_date}</span>
+        )} | ${parseFloat(release_date)}</span>
 			</p>
 		</div>
 	</li>`;
