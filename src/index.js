@@ -1,11 +1,11 @@
-import { onCardClick } from "./js/onCardClick";
-import { pagination } from "./js/pagination";
-const page = pagination.getCurrentPage()
+import { onCardClick } from './js/onCardClick';
+import { pagination } from './js/pagination';
+const page = pagination.getCurrentPage();
 console.log(page);
-
 
 import { refs } from './components/refs';
 import { themoviedbApi } from './components/themoviedb-service';
+import { renderTrendingMovies } from './js/renderTrendingMovies';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
@@ -27,9 +27,9 @@ const getTrendingMovies = async () => {
     const moeviesData = await themoviedbApi.getTrendingMovies();
     console.log('TrendingMovies', moeviesData);
     // сюда добавить функцию рендера
+    renderTrendingMovies();
   } catch (error) {
     console.log(error);
   }
 };
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
-
