@@ -3,7 +3,8 @@ class MovieData {
   #genres = null;
 
   getMovieGenresPreview(genreIdList) {
-    const genresArray = genreIdList.map(id => this.genres.get(id));
+    const genresArray = genreIdList.map(id => this.#genres.get(id));
+
     if (genresArray.length <= 1) {
       return genresArray.toString;
     }
@@ -20,6 +21,14 @@ class MovieData {
 
   set movies(moviesData) {
     this.#movies = moviesData;
+  }
+
+  get genres() {
+    return this.#movies;
+  }
+
+  set genres(newGenres) {
+    this.#genres = newGenres;
   }
 }
 
