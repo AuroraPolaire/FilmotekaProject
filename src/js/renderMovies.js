@@ -1,6 +1,6 @@
-// import { movieData } from '../index';
+// import { movieData } from './movieClass';
 
-function renderMovies(data) {
+export function renderMovies(data) {
   return data.movies
     .map(
       ({
@@ -23,7 +23,7 @@ function renderMovies(data) {
 		/>
 		<div class="movie-card__wrp">
 			<p class="movie-card__title">
-				${name} <br />
+				${name.toUpperCase()} <br />
 				<span class="movie-card__info">${data.getMovieGenresPreview(
           genre_ids
         )} | ${parseFloat(first_air_date)}</span>
@@ -41,7 +41,7 @@ function renderMovies(data) {
 		/>
 		<div class="movie-card__wrp">
 			<p class="movie-card__title">
-				${title} <br />
+				${title.toUpperCase()} <br />
 				<span class="movie-card__info">${data.getMovieGenresPreview(
           genre_ids
         )} | ${parseFloat(release_date)}</span>
@@ -52,4 +52,3 @@ function renderMovies(data) {
     )
     .join('');
 }
-export { renderMovies };
