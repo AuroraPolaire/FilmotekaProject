@@ -1,6 +1,6 @@
 import { movieData } from '../index';
 
-function renderTrendingMovies(data) {
+function renderMovies(data) {
   return data.movies
     .map(({ title, poster_path, release_date, genre_ids }) => {
       return `
@@ -23,7 +23,7 @@ function renderTrendingMovies(data) {
     })
     .join('');
 }
-export { renderTrendingMovies };
+export { renderMovies };
 
 // export const movieGeneralMarkup = data => {
 //   console.log(data);

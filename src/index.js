@@ -2,7 +2,7 @@ import { onCardClick } from './js/onCardClick';
 import { pagination } from './js/pagination';
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
-import { renderTrendingMovies } from './js/renderTrendingMovies';
+import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 
 const onSubmitSearchMoviesForm = async e => {
@@ -47,7 +47,7 @@ function initData() {
 }
 
 function renderMovieMarkup(movieData) {
-  refs.movieContainer.innerHTML = renderTrendingMovies(movieData);
+  refs.movieContainer.innerHTML = renderMovies(movieData);
 }
 
 initData();
@@ -70,7 +70,7 @@ pagination.on('afterMove', async event => {
 //     const moeviesData = await themoviedbApi.getTrendingMovies();
 //     console.log('TrendingMovies', moeviesData);
 //     // сюда добавить функцию рендера
-//     renderTrendingMovies();
+//     renderMovies();
 //   } catch (error) {
 //     console.log(error);
 //   }
