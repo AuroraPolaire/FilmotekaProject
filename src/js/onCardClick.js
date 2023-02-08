@@ -31,7 +31,7 @@ import * as basicLightbox from 'basiclightbox';
 
 // onCardClick();
 
-closeModalByKhrystyna = (e, modal) => {
+const closeModalByKhrystyna = (e, modal) => {
   if (e.code === 'Escape') {
     modal.close();
     return;
