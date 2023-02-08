@@ -1,4 +1,4 @@
-
+import { onCardClick } from "./js/onCardClick";
 import { pagination } from "./js/pagination";
 const page = pagination.getCurrentPage()
 console.log(page);
