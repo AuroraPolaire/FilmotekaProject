@@ -3,6 +3,7 @@ import { pagination } from './js/pagination';
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
 import { renderTrendingMovies } from './js/renderTrendingMovies';
+import './js/slider';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
