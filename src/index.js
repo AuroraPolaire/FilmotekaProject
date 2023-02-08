@@ -2,6 +2,7 @@ import { onCardClick } from "./js/onCardClick";
 import { pagination } from "./js/pagination";
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
+import { renderTrendingMovies } from './js/renderTrendingMovies';
 
 
 const onSubmitSearchMoviesForm = async e => {
@@ -24,11 +25,13 @@ const getTrendingMovies = async () => {
     const moeviesData = await themoviedbApi.getTrendingMovies();
     console.log('TrendingMovies', moeviesData);
     // сюда добавить функцию рендера
+    renderTrendingMovies();
   } catch (error) {
     console.log(error);
   }
 };
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
+
 
 
 
