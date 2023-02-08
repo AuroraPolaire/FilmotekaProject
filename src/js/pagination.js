@@ -27,4 +27,6 @@ const options = {
   }
 };
 
+
+
 export const pagination = new Pagination('pagination', options);

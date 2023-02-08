@@ -1,4 +1,4 @@
-import { themoviedbApi } from '../components/themoviedb-service';
+import { themoviedbApi } from '../js/themoviedb-service
 import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
 

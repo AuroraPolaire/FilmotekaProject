@@ -1,11 +1,8 @@
 import { onCardClick } from "./js/onCardClick";
 import { pagination } from "./js/pagination";
-const page = pagination.getCurrentPage()
-console.log(page);
+import { refs } from './js/refs';
+import { themoviedbApi } from './js/themoviedb-service';
 
-
-import { refs } from './components/refs';
-import { themoviedbApi } from './components/themoviedb-service';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
@@ -33,3 +30,17 @@ const getTrendingMovies = async () => {
 };
 refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
+
+
+// Pagination 
+const page = pagination.getCurrentPage()
+pagination.on('afterMove', async event => {
+    const currentPage = event.page;
+    try {
+        const { data } = await themoviedbApi.getTrendingMovies(currentPage); 
+        // mark up function should be added here
+    }
+    catch (error) {
+        console.log(error);
+    }
+});

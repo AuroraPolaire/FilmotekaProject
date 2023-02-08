@@ -1,0 +1,20 @@
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+    color: #fff;
+    background: var(--hover) !important;
+    border-color: var(--hover) !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+.tui-pagination .tui-is-selected:hover  {
+    background-color: var(--hover) !important;
+}
+
+.tui-pagination .tui-first-child.tui-is-selected {
+    border-left: 1px solid var(--hover) !important;
+}
+
+.tui-pagination .tui-last-child.tui-is-selected {
+    border-right: 1px solid var(--hover) !important;
+}
