@@ -1,5 +1,4 @@
 import { movieData } from '../index';
-import { initializeSlider, resetSlider } from './slider';
 
 function renderTrendingMovies(data) {
   console.log(data.movies);
@@ -24,6 +23,8 @@ function renderTrendingMovies(data) {
     .join('');
 }
 export { renderTrendingMovies };
+	
+
 
 // export const movieGeneralMarkup = data => {
 //   console.log(data);
