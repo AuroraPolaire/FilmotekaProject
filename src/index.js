@@ -74,6 +74,9 @@ pagination.on('afterMove', async event => {
   }
 });
 
+// Modal
+refs.movieContainer.addEventListener('click', onCardClick);
+
 // <<<<<<<<<< FIREBASE AUTHENTICATION >>>>>>>>>>
 
 import {

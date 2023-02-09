@@ -12,6 +12,7 @@ export function renderMovies(data) {
         name,
         first_air_date,
         vote_average,
+        id,
       }) => {
         return `
 	<li class="trending-movie__card">
@@ -20,6 +21,7 @@ export function renderMovies(data) {
 			src="${poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : url}"
 			alt="${title ? title : name}"
 			loading="lazy"
+      data-id="${id}"
 		/>
 		<div class="wrapper">
 			<p class="movie-card__title">
