@@ -1,10 +1,11 @@
 // import { movieData } from './movieClass';
+import * as url from '../images/No-Image-Placeholder.svg';
 
 export function renderMovies(data) {
   return data.movies
     .map(
       ({
-        title = '',
+        title,
         poster_path,
         release_date,
         genre_ids,
@@ -15,7 +16,7 @@ export function renderMovies(data) {
 	<li class="trending-movie__card">
 		<img
 			class="trending-movie__img"
-			src="https://image.tmdb.org/t/p/w500${poster_path}"
+			src="${poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : url}"
 			alt="${title ? title : name}"
 			loading="lazy"
 		/>

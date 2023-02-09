@@ -21,7 +21,7 @@ const onSubmitSearchMoviesForm = async e => {
       themoviedbApi.searchMovies(),
     ]).then(data => {
       const [genres, movies] = data;
-
+      console.log(movies);
       runNotification(movies);
 
       movieData.genres = genres;
