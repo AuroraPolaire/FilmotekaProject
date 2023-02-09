@@ -9,11 +9,15 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
+
+  const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
+  if (!searchQuery) {
+    return;
+  }
+  themoviedbApi.searchQuery = searchQuery;
   Loading.standard({
     svgColor: '#ff001b',
   });
-  const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
-  themoviedbApi.searchQuery = searchQuery;
   try {
     await Promise.all([
       themoviedbApi.getGenresOfMovies(),

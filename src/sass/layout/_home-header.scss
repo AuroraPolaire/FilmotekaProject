@@ -11,8 +11,6 @@
   background-size: cover;
   background-position: center;
 
-
-
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
     screen and (min-resolution: 2dppx) and (max-width: 767px) {
@@ -90,7 +88,6 @@
   @media screen and (min-width: 1280px) {
     max-width: 1600px;
   }
-  
 }
 
 .navigation {
@@ -194,10 +191,8 @@
 
   color: var(--text-light);
 
-
   transition: border var(--transition-dur-and-func),
     box-shadow var(--transition-dur-and-func);
-
 
   &:hover,
   &:focus,
@@ -211,6 +206,11 @@
   &::placeholder {
     color: var(--text-light);
   }
+}
+
+.search-form__input:-webkit-autofill,
+.search-form__input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
 
 .search-form__submit-btn {
@@ -242,5 +242,4 @@
     stroke: var(--accent-2);
     transform: scale(1.3) translate(-2px, 0px);
   }
-
 }
