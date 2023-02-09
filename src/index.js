@@ -61,7 +61,7 @@ function renderMovieMarkup(movieData) {
 
 renderTrendingMovies();
 
-Pagination;
+// Pagination;
 const page = pagination.getCurrentPage();
 pagination.on('afterMove', async event => {
   const currentPage = event.page;
