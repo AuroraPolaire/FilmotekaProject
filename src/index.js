@@ -10,7 +10,9 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
-  Loading.standard();
+  Loading.standard({
+    svgColor: '#ff001b',
+  });
   const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
   themoviedbApi.searchQuery = searchQuery;
   try {
