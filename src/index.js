@@ -6,8 +6,11 @@ import './js/slider';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
+  Loading.standard();
   const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
   themoviedbApi.searchQuery = searchQuery;
   try {
@@ -23,9 +26,9 @@ const onSubmitSearchMoviesForm = async e => {
       movieData.movies = movies.results;
 
       renderMovieMarkup(movieData);
+      Loading.remove(500);
     });
     const moviesData = await themoviedbApi.searchMovies();
-    console.log('searchMovies', moviesData);
   } catch (error) {
     console.log(error);
   }
