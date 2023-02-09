@@ -26,9 +26,14 @@
   height: 398px;
 }
 .movie-card__wrp {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  // padding: 10px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 .movie-card__title {
   font-family: var(--primary-font);
@@ -37,12 +42,50 @@
   line-height: 1.33;
   color: var(--text-dark);
 }
-.movie-card__info {
+.movie-card__genre-wrp {
+  position: relative;
+}
+
+.movie-card__genre::after {
+  position: absolute;
+  content: '';
+  border-radius: 2px;
+  background-color: var(--accent);
+  width: 1px;
+  height: 10px;
+  right: -9px;
+  top: 2px;
+}
+.movie-card__year {
+  margin-left: 16px;
+}
+.card-info {
   font-family: var(--primary-font);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   color: var(--accent);
+}
+.movie-card__rating-wrp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  width: 36px;
+  height: 16px;
+  background-color: var(--accent);
+  border-radius: 5px;
+}
+.movie-card__rating {
+  color: #fff;
+  font-family: var(--primary-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (min-width: 768px) {
   .trending-movies__list {
@@ -59,6 +102,10 @@
     width: 336px;
     height: 455px;
   }
+  .movie-card__rating {
+    width: 17px;
+    height: 14px;
+  }
 }
 @media screen and (min-width: 1280px) {
   .trending-movies__list {
@@ -66,18 +113,30 @@
   }
   .trending-movie__card {
     width: 394px;
-    height: 670px;
+    height: 640px;
   }
   .trending-movie__img {
     width: 394px;
     height: 574px;
   }
+  .movie-card__genre::after {
+    width: 2px;
+    height: 14px;
+    top: 2px;
+    right: -10px;
+  }
   .movie-card__title {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.2;
   }
-  .movie-card__info {
-    font-size: 16px;
+  .card-info {
+    font-size: 15px;
     line-height: 1.2;
+  }
+  .movie-card__rating-wrp {
+    width: 40px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 24px;
   }
 }
