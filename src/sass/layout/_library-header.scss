@@ -1,6 +1,7 @@
 #header__section_library {
   background-color: #000000;
   background-image: 
+
 //   linear-gradient(
 //       to right,
 //       rgba(0, 0, 0, 0.56),
@@ -27,11 +28,13 @@
 
   @media screen and (min-width: 768px) {
     background-image: 
+
   //   linear-gradient(
   //       to right,
   //       rgba(0, 0, 0, 0.56),
   //       rgba(0, 0, 0, 0.56)
   //     ),
+
       url('../images/header-library-bg-tablet@1x.jpg');
   }
 
@@ -46,6 +49,7 @@
     //   ),
       url('../images/header-library-bg-tablet@2x.jpg');
   }
+
 
   // desktop background
 

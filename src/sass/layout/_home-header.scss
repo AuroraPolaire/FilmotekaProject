@@ -243,3 +243,14 @@
     transform: scale(1.3) translate(-2px, 0px);
   }
 }
+
+.error-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-notification {
+  padding-top: 20px;
+  color: #ff001b;
+}
