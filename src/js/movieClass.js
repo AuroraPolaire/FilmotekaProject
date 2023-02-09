@@ -6,7 +6,7 @@ class MovieData {
     const genresArray = genreIdList.map(id => this.#genres.get(id));
 
     if (genresArray.length <= 1) {
-      return genresArray.toString;
+      return genresArray;
     }
 
     if (genresArray.length === 2) {
