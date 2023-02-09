@@ -15,16 +15,20 @@ export function runNotification(moviesData) {
   if (moviesData.total_results === 1) {
     Notify.success('We found 1 movie', {
       position: 'center-top',
-      timeout: '2000',
-      // background: '',
       borderRadius: '2px',
+      success: {
+        background: '#ffffff',
+        textColor: '#000',
+      },
     });
   } else {
     Notify.success(`${moviesData.total_results} movies found`, {
       position: 'center-top',
-      timeout: '2000',
-      // background: '',
       borderRadius: '2px',
+      success: {
+        background: '#ffffff',
+        textColor: '#000',
+      },
     });
   }
 }
