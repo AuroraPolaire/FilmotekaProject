@@ -2,7 +2,6 @@ import { onCardClick } from './js/onCardClick';
 import { pagination } from './js/pagination';
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
-import './js/slider';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
@@ -62,7 +61,7 @@ function renderMovieMarkup(movieData) {
 
 renderTrendingMovies();
 
-// Pagination
+// Pagination;
 const page = pagination.getCurrentPage();
 pagination.on('afterMove', async event => {
   const currentPage = event.page;

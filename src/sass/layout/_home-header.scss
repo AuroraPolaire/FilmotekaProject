@@ -194,8 +194,10 @@
 
   color: var(--text-light);
 
+
   transition: border var(--transition-dur-and-func),
     box-shadow var(--transition-dur-and-func);
+
 
   &:hover,
   &:focus,
@@ -230,6 +232,7 @@
 
 .search-form__icon {
   stroke: currentColor;
+
   transition: stroke var(--transition-dur-and-func) transform
     var(--transition-dur-and-func);
 
@@ -239,4 +242,5 @@
     stroke: var(--accent-2);
     transform: scale(1.3) translate(-2px, 0px);
   }
+
 }
