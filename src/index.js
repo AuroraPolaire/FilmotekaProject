@@ -5,8 +5,7 @@ import { themoviedbApi } from './js/themoviedb-service';
 import './js/slider';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { runNotification } from './js/runNotification';
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
   const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
@@ -17,15 +16,8 @@ const onSubmitSearchMoviesForm = async e => {
       themoviedbApi.searchMovies(),
     ]).then(data => {
       const [genres, movies] = data;
-      if (!movies.total_results) {
-        Notify.failure('No movies found');
-        return;
-      }
-      if (movies.total_results === 1) {
-        Notify.success('We found 1 movie');
-      } else {
-        Notify.success(`${movies.total_results} movies found`);
-      }
+
+      runNotification(movies);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
@@ -78,19 +70,6 @@ pagination.on('afterMove', async event => {
     console.log(error);
   }
 });
-
-// функция для рендера популярных фильмов
-// const getTrendingMovies = async () => {
-//   try {
-//     const moeviesData = await themoviedbApi.getTrendingMovies();
-//     console.log('TrendingMovies', moeviesData);
-//     // сюда добавить функцию рендера
-//     renderMovies();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-// getTrendingMovies();
 
 // <<<<<<<<<< FIREBASE AUTHENTICATION >>>>>>>>>>
 
