@@ -39,9 +39,7 @@ const renderTrendingMovies = () => {
       themoviedbApi.getGenresOfMovies(),
       themoviedbApi.getTrendingMovies(),
     ]).then(data => {
-      console.log(data);
       const [genres, movies] = data;
-      console.log(genres);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
