@@ -5,6 +5,7 @@ import { themoviedbApi } from './js/themoviedb-service';
 import './js/slider';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
@@ -15,8 +16,16 @@ const onSubmitSearchMoviesForm = async e => {
       themoviedbApi.getGenresOfMovies(),
       themoviedbApi.searchMovies(),
     ]).then(data => {
-      console.log(data);
       const [genres, movies] = data;
+      if (!movies.total_results) {
+        Notify.failure('No movies found');
+        return;
+      }
+      if (movies.total_results === 1) {
+        Notify.success('We found 1 movie');
+      } else {
+        Notify.success(`${movies.total_results} movies found`);
+      }
 
       movieData.genres = genres;
       movieData.movies = movies.results;
