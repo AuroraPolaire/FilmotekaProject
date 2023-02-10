@@ -6,6 +6,9 @@ import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import './js/sliderGlide';
+import './js/teamModal';
+import './js/renderTeamModal';
 
 const page = pagination.getCurrentPage();
 
@@ -16,7 +19,7 @@ const renderTrendingMovies = () => {
       themoviedbApi.getTrendingMovies(page),
     ]).then(data => {
       const [genres, movies] = data;
-      pagination.reset(movies.total_pages);
+      pagination.reset(movies.total_results);
       console.log(pagination);
       movieData.genres = genres;
       movieData.movies = movies.results;
@@ -88,7 +91,7 @@ const onSubmitSearchMoviesForm = async e => {
     ]).then(data => {
       const [genres, movies] = data;
 
-      pagination.reset(movies.total_pages);
+      pagination.reset(movies.total_results);
       runNotification(movies);
 
       movieData.genres = genres;

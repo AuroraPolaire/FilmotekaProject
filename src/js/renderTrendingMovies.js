@@ -23,8 +23,6 @@ function renderTrendingMovies(data) {
     .join('');
 }
 export { renderTrendingMovies };
-	
-
 
 // export const movieGeneralMarkup = data => {
 //   console.log(data);

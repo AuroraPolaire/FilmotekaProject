@@ -9,7 +9,7 @@
 @import './components/team-modal';
 
 @import 'slick-slider/slick/slick.scss';
-
+@import './layout/slider-library';
 @import './components/auth';
 
 @import './layout/home-header';
@@ -18,4 +18,11 @@
 @import './layout/footer';
 
 @import './utils/vars';
+
 @import './components/back-to-top';
+
+@import './utils/animation';
+
+@import 'node_modules/@glidejs/glide/src/assets/sass/glide.core';
+@import 'node_modules/@glidejs/glide/src/assets/sass/glide.theme';
+

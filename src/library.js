@@ -117,6 +117,7 @@ btnLogout.addEventListener('click', logout);
 monitorAuthState();
 
 const watchedListFromDb = async () => {
+  let arr = [];
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log('Generating watched list');
@@ -126,10 +127,9 @@ const watchedListFromDb = async () => {
       const getMovies = async () => {
         try {
           const moviesIdFromDb = await getDocs(docRef);
-          arr = [];
           moviesIdFromDb.forEach(doc => {
-            // console.log(doc.id);
-            arr.push(doc.id);
+            console.log(doc.id);
+            arr.push(Number(doc.id));
           });
 
           console.log(arr);
@@ -148,6 +148,7 @@ const watchedListFromDb = async () => {
 };
 
 const queueListFromDb = async () => {
+  let arr = [];
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log('Generating queue list');
@@ -157,9 +158,8 @@ const queueListFromDb = async () => {
       const getMovies = async () => {
         try {
           const moviesIdFromDb = await getDocs(docRef);
-          arr = [];
           moviesIdFromDb.forEach(doc => {
-            // console.log(doc.id);
+            console.log(doc.id);
             arr.push(doc.id);
           });
 

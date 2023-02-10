@@ -1,0 +1,52 @@
+.page-footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+
+  color: var(--text-footer);
+  background-color: var(--background-footer);
+
+  & .container {
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.19;
+  }
+}
+
+.footer-content {
+  &__copyright {
+    margin-bottom: 10px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 4px;
+  }
+}
+
+.developers__link {
+  color: var(--text-footer);
+  text-decoration: underline;
+}
+
+.heart {
+  animation: Scale 0.7s ease infinite alternate;
+  margin-left: 3px;
+  margin-right: 3px;
+}
