@@ -91,7 +91,7 @@ const onSubmitSearchMoviesForm = async e => {
     ]).then(data => {
       const [genres, movies] = data;
 
-      pagination.reset(movies.total_pages);
+      pagination.reset(movies.total_results);
       runNotification(movies);
 
       movieData.genres = genres;
