@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+export const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
 class ThemoviedbApi {
   static API_KEY = '2b316c342fe13f9049052886494c29f1';
   static URL = 'https://api.themoviedb.org/';
