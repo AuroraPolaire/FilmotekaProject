@@ -1,0 +1,29 @@
+<div class="back-to-top visually-hidden">
+  <button
+    type="button"
+    class="back-to-top-btn"
+    onclick="topFunction()"
+    id="back-to-top-btnId"
+    title="Go to top"
+  >
+    <svg class="back-to-top__icon">
+      <use href="./images/symbol-defs.svg#icon-circle-up"></use>
+    </svg>
+  </button>
+</div>
+
+<script>   
+const backToTopEl = document.querySelector('.back-to-top');
+
+function topFunction() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });  
+}
+
+window.addEventListener('scroll', function () {
+  backToTopEl.classList.toggle('visually-hidden', window.scrollY < 200);
+});
+</script>
