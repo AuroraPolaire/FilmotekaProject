@@ -7,14 +7,73 @@ import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
+const page = pagination.getCurrentPage();
+
+const renderTrendingMovies = () => {
+  try {
+    Promise.all([
+      themoviedbApi.getGenresOfMovies(),
+      themoviedbApi.getTrendingMovies(page),
+    ]).then(data => {
+      const [genres, movies] = data;
+      pagination.reset(movies.total_pages);
+      console.log(pagination);
+      movieData.genres = genres;
+      movieData.movies = movies.results;
+      refs.paginationBlock.classList.remove('is-hidden');
+      // console.log(movies);
+      renderMovieMarkup(movieData);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+pagination.on('afterMove', loadMoreTrendingPhotos);
+
+function renderMovieMarkup(movieData) {
+  refs.movieContainer.innerHTML = renderMovies(movieData);
+}
+
+renderTrendingMovies();
+
+function loadMoreTrendingPhotos(event) {
+  const currentPage = event.page;
+
+  try {
+    Promise.all([
+      themoviedbApi.getGenresOfMovies(),
+      themoviedbApi.getTrendingMovies(currentPage),
+    ]).then(data => {
+      const [genres, movies] = data;
+
+      movieData.genres = genres;
+      movieData.movies = movies.results;
+
+      renderMovieMarkup(movieData);
+    });
+  } catch (error) {
+    refs.paginationBlock.classList.add('is-hidden');
+    console.log(error);
+  }
+}
+
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
+  pagination.off('afterMove', loadMoreTrendingPhotos);
+  pagination.off('afterMove', loadMoreSearchPhotos);
+  pagination.on('afterMove', loadMoreSearchPhotos);
+
+  refs.paginationBlock.classList.add('is-hidden');
+  refs.movieContainer.innerHTML = '';
+
   refs.errorNotification.innerHTML = '';
+
   const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
   if (!searchQuery) {
+    Notify.failure('Please enter query');
     return;
   }
-
   Loading.standard({
     svgColor: '#ff001b',
   });
@@ -25,30 +84,31 @@ const onSubmitSearchMoviesForm = async e => {
   try {
     await Promise.all([
       themoviedbApi.getGenresOfMovies(),
-      themoviedbApi.searchMovies(),
+      themoviedbApi.searchMovies(page),
     ]).then(data => {
       const [genres, movies] = data;
-      console.log(movies);
+
+      pagination.reset(movies.total_pages);
       runNotification(movies);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
 
       renderMovieMarkup(movieData);
+      refs.paginationBlock.classList.remove('is-hidden');
     });
-    const moviesData = await themoviedbApi.searchMovies();
   } catch (error) {
     console.log(error);
   }
 };
 
-refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
+async function loadMoreSearchPhotos(event) {
+  const currentPage = event.page;
 
-const renderTrendingMovies = () => {
   try {
-    Promise.all([
+    await Promise.all([
       themoviedbApi.getGenresOfMovies(),
-      themoviedbApi.getTrendingMovies(),
+      themoviedbApi.searchMovies(currentPage),
     ]).then(data => {
       const [genres, movies] = data;
 
@@ -58,27 +118,24 @@ const renderTrendingMovies = () => {
       renderMovieMarkup(movieData);
     });
   } catch (error) {
+    refs.paginationBlock.classList.add('is-hidden');
     console.log(error);
   }
-};
-
-function renderMovieMarkup(movieData) {
-  refs.movieContainer.innerHTML = renderMovies(movieData);
 }
 
-renderTrendingMovies();
+refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
 // Pagination;
-const page = pagination.getCurrentPage();
-pagination.on('afterMove', async event => {
-  const currentPage = event.page;
-  try {
-    const { data } = await themoviedbApi.getTrendingMovies(currentPage);
-    // mark up function should be added here
-  } catch (error) {
-    console.log(error);
-  }
-});
+
+// pagination.on('afterMove', async event => {
+//   const currentPage = event.page;
+//   try {
+//     const { data } = await themoviedbApi.getTrendingMovies(currentPage);
+//     // mark up function should be added here
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 // Modal
 refs.movieContainer.addEventListener('click', onCardClick);
