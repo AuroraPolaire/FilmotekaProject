@@ -83,12 +83,9 @@ pagination.on('afterMove', async event => {
 // Modal
 refs.movieContainer.addEventListener('click', onCardClick);
 
-
 // <<<<<<<<<< FIREBASE >>>>>>>>>>
 
 console.log('Firebase!');
-
-
 
 import {
   hideLoginError,
@@ -152,7 +149,7 @@ const createAccount = async () => {
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
 
     const userRef = doc(firestore, 'users', newUser.user.uid);
-    const addWatchedFilm = async () => {
+    const dbAddUser = async () => {
       try {
         await setDoc(userRef, { email: email });
         console.log('This user has been written to the Firestore');
@@ -161,7 +158,7 @@ const createAccount = async () => {
       }
     };
 
-    addWatchedFilm();
+    dbAddUser();
 
     console.log('This user has been written to the database');
   } catch (error) {
@@ -179,6 +176,25 @@ const monitorAuthState = async () => {
       showLoginState(user);
 
       hideLoginError();
+
+      const docRef = doc(firestore, 'users', user.uid, 'watched', 'Avatar');
+      // const colRef = collection(docRef, 'watched');
+
+      const addWatchedFilm = async () => {
+        try {
+          await setDoc(docRef, {
+            name: 'Avatar',
+            rating: 8.9,
+            genre: 'action',
+          });
+          console.log('This FILM has been written to the WATCHED');
+        } catch {
+          console.log(`I got an error! ${error}`);
+        }
+      };
+
+      addWatchedFilm();
+
       // hideLinkError();
     } else {
       showLoginForm();
