@@ -74,7 +74,9 @@ pagination.on('afterMove', async event => {
   }
 });
 
-// <<<<<<<<<< FIREBASE AUTHENTICATION >>>>>>>>>>
+// <<<<<<<<<< FIREBASE >>>>>>>>>>
+
+console.log('Firebase!');
 
 import {
   hideLoginError,
@@ -95,6 +97,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  setDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 
 const firebaseApp = initializeApp({
   apiKey: 'AIzaSyAQNEF1EZQq4hRQq21AEqmnTA4ysock-bY',
@@ -105,6 +115,8 @@ const firebaseApp = initializeApp({
   appId: '1:555325927364:web:5f447ca8d4265db75c3e91',
   measurementId: 'G-LZ05WYL8RJ',
 });
+
+// <<<<<<<<<< FIREBASE AUTHENTICATION >>>>>>>>>>
 
 // Login using email/password
 const loginEmailPassword = async () => {
@@ -119,13 +131,27 @@ const loginEmailPassword = async () => {
   }
 };
 
-// Create new account using email/password
+// Create new account using email/password and link it with FireSTORE
 const createAccount = async () => {
   const email = txtEmail.value;
   const password = txtPassword.value;
 
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+
+    const userRef = doc(firestore, 'users', newUser.user.uid);
+    const addWatchedFilm = async () => {
+      try {
+        await setDoc(userRef, { email: email });
+        console.log('This user has been written to the Firestore');
+      } catch {
+        console.log(`I got an error! ${error}`);
+      }
+    };
+
+    addWatchedFilm();
+
+    console.log('This user has been written to the database');
   } catch (error) {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
@@ -161,3 +187,38 @@ btnLogout.addEventListener('click', logout);
 const auth = getAuth(firebaseApp);
 
 monitorAuthState();
+
+// <<<<<<<<<< FIRESTORE >>>>>>>>>>
+
+// const db = getFirestore(firebaseApp);
+
+// try {
+//   const docRef = addDoc(collection(db, 'users'), {
+//     first: 'Ada',
+//     last: 'Lovelace',
+//     born: 1815,
+//   });
+//   console.log('Document written with ID: ', docRef.id);
+// } catch (e) {
+//   console.error('Error adding document: ', e);
+// }
+// const firestore = getFirestore(firebaseApp);
+
+// const watchedFilms = doc(firestore, 'films/watched');
+// const addWatchedFilm = async () => {
+//   const filmData = {
+//     name: 'Avatar',
+//     rating: 6.9,
+//     genre: 'action',
+//   };
+//   try {
+//     await setDoc(watchedFilms, filmData, { merge: true });
+//     console.log('This value has been written to the database');
+//   } catch {
+//     console.log(`I got an error! ${error}`);
+//   }
+// };
+
+// addWatchedFilm();
+
+const firestore = getFirestore(firebaseApp);
