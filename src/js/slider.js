@@ -40,7 +40,7 @@ function renderTrendingFilms() {
 function filmCardSlider(films) {
   return films
     .map(({ original_title, poster_path, vote_average, movie_id, name }) => {
-      return `<div class="slider__item"><img class="slider-image" src=${IMG_URL}${poster_path} alt="${original_title}${name}" data-id="${movie_id}" onerror="this.onerror=null;this.src="https://i.postimg.cc/6pzyh7Wc/pngwing-com.png";" /></div>`;
+      return `<div class="slider__item"><img class="slider-image" src=${IMG_URL}${poster_path} alt="${original_title}${name}" data-id="${movie_id}" onerror="this.onerror=null;this.src="https://i.postimg.cc/6pzyh7Wc/pngwing-com.png";" /><span class="trending-raiting">${vote_average.toFixed(1)}</span></div>`;
     })
     .join('');
 }
