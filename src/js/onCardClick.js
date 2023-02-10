@@ -1,4 +1,5 @@
 import { themoviedbApi } from '../js/themoviedb-service';
+import { movieData } from './movieClass';
 import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
 import { addFilmToWatched, addFilmToQueue } from '../index';
@@ -14,16 +15,28 @@ const onCardClick = async e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+  // ЗНАЙТИ ФІЛЬМ СЕРЕД ВІДОБРАЖЕНИХ НА СТОРІНЦІ
+  let targetMovie; 
   const id = e.target.dataset.id;
   let title;
+  try {
+    for (const movie of movieData.movies) {
+      if (Number(id) === movie.id) {
+        targetMovie = movie;
+        console.log(targetMovie);
+    }
+  }
+  } catch (error) {
+    console.log(error);
+  }
 
   try {
     const movie = await Promise.all([
-      themoviedbApi.getMovieById(id),
-      themoviedbApi.getMovieTrailer(id),
+      // themoviedbApi.getMovieById(id),
+      themoviedbApi.getMovieTrailer(targetMovie.id),
     ]);
 
-    const modal = basicLightbox.create(createModalInfo(movie[0]), {
+    const modal = basicLightbox.create(createModalInfo(targetMovie), {
       onShow: modal => {
         toggleModalOpen();
         modal.element().querySelector('button[data-modal-close]').onclick =
@@ -42,11 +55,14 @@ const onCardClick = async e => {
 
     showTrailer(movie);
 
-    title = movie[0].original_title;
+    // title = movie[0].original_title;
+    //тут треба перевірку написати на original_title або original_name
+    title = targetMovie.original_title;
   } catch (error) {
     console.log(error);
   }
 
+// <<<<<<<<BUTTONS HANDLERS>>>>>>>>>>>>>
   const addToWatchedBtn = document.querySelector('.modal__btn--watched');
   const addToQueueBtn = document.querySelector('.modal__btn--queue');
 
@@ -67,13 +83,14 @@ const onCardClick = async e => {
   addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
 };
 
+// <<<<<<<<OTHER MODAL HANDLERS>>>>>>>>>>>>>>>
 function toggleModalOpen() {
   document.body.classList.toggle('modal-open');
 }
 
 function showTrailer(movie) {
-  if (movie[1].results.length > 0) {
-    const trailerUrl = movie[1].results[0].key;
+  if (movie[0].results.length > 0) {
+    const trailerUrl = movie[0].results[0].key;
     const mediaContainer = document.querySelector('.modal__media-container');
 
     mediaContainer.addEventListener('click', e => {
