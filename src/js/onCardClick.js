@@ -15,26 +15,13 @@ const onCardClick = async e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  // ЗНАЙТИ ФІЛЬМ СЕРЕД ВІДОБРАЖЕНИХ НА СТОРІНЦІ
-  let targetMovie; 
+
   const id = e.target.dataset.id;
+  const targetMovie = movieData.getMovieById(id); 
   let title;
-  try {
-    for (const movie of movieData.movies) {
-      if (Number(id) === movie.id) {
-        targetMovie = movie;
-        console.log(targetMovie);
-    }
-  }
-  } catch (error) {
-    console.log(error);
-  }
 
   try {
-    const movie = await Promise.all([
-      // themoviedbApi.getMovieById(id),
-      themoviedbApi.getMovieTrailer(targetMovie.id),
-    ]);
+    const trailer = themoviedbApi.getMovieTrailer(targetMovie.id).catch((err)=>{console.log(err)});
 
     const modal = basicLightbox.create(createModalInfo(targetMovie), {
       onShow: modal => {
@@ -53,11 +40,11 @@ const onCardClick = async e => {
     });
     modal.show();
 
-    showTrailer(movie);
+    if (trailer) {
+      showTrailer(trailer);
+    }
 
-    // title = movie[0].original_title;
-    //тут треба перевірку написати на original_title або original_name
-    title = targetMovie.original_title;
+    title = targetMovie.original_title ? targetMovie.original_title : targetMovie.original_name;
   } catch (error) {
     console.log(error);
   }
@@ -66,16 +53,16 @@ const onCardClick = async e => {
   const addToWatchedBtn = document.querySelector('.modal__btn--watched');
   const addToQueueBtn = document.querySelector('.modal__btn--queue');
 
-  console.log(id);
+  console.log(targetMovie.id);
   console.log(title);
 
   const onAddToWatchedBtnClick = () => {
-    addFilmToWatched(id, title);
+    addFilmToWatched(targetMovie.id, title);
     addToWatchedBtn.removeEventListener('click', onAddToWatchedBtnClick);
   };
 
   const onAddToQueueBtnClick = () => {
-    addFilmToQueue(id, title);
+    addFilmToQueue(targetMovie.id, title);
     addToQueueBtn.removeEventListener('click', onAddToQueueBtnClick);
   };
 
@@ -88,17 +75,15 @@ function toggleModalOpen() {
   document.body.classList.toggle('modal-open');
 }
 
-function showTrailer(movie) {
-  if (movie[0].results.length > 0) {
-    const trailerUrl = movie[0].results[0].key;
-    const mediaContainer = document.querySelector('.modal__media-container');
+function showTrailer(trailer) {
+
+  const mediaContainer = document.querySelector('.modal__media-container');
 
     mediaContainer.addEventListener('click', e => {
       mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
-        src="https://www.youtube.com/embed/${trailerUrl}"> frameborder="0" allowfullscreen
+        src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
         </iframe>`;
     });
-  }
 }
 
 export { onCardClick };

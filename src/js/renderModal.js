@@ -1,5 +1,6 @@
 import * as url from '../images/No-Image-Placeholder.svg';
 import * as svg from '../images/symbol-defs.svg';
+import { movieData } from './movieClass';
 
 function createModalInfo({
   title,
@@ -13,6 +14,7 @@ function createModalInfo({
   name,
   original_name
 }) {
+  const genresString = movieData.getMovieGenres(genre_ids);
   return `
     <div class="modal">
       <button data-modal-close type="button" class="modal__close-button">
@@ -60,7 +62,7 @@ function createModalInfo({
               </tr>
               <tr class="modal__info-item">
                 <td class="modal__info--key">Genre:</td>
-                <td class="modal__info--value">${genre_ids}</td>
+                <td class="modal__info--value">${genresString}</td>
               </tr>
             </table>
             <div class="modal__description">
