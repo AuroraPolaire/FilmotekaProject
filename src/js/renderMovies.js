@@ -13,6 +13,17 @@ export function renderMovies(data) {
         first_air_date,
         vote_average,
       }) => {
+        const genreCode = `
+           <div class="movie-card__genre genre card-info">
+            ${data.getMovieGenresPreview(genre_ids)}
+          </div>`;
+        const noGenreCode = ``;
+        const ratingPresent = `
+				<div class="movie-card__rating-wrp">
+				<div class="movie-card__rating">${vote_average.toFixed(1)}</div>
+				</div>
+				`;
+        const ratingAbsent = ``;
         return `
 	<li class="trending-movie__card">
 		<img
@@ -26,19 +37,16 @@ export function renderMovies(data) {
 				${title ? title.toUpperCase() : name.toUpperCase()} </p>
 				<div class="movie-card__wrp">
 				<div class="movie-card__genre-wrp">
-				<div class="movie-card__genre card-info">${data.getMovieGenresPreview(
-          genre_ids
-        )}</div>
+				${genre_ids.length > 0 ? genreCode : noGenreCode}
 				</div>
 				<div class="movie-card__year card-info">${
           release_date
             ? parseFloat(release_date) || ''
             : parseFloat(first_air_date) || ''
         } </div>
-				<div class="movie-card__rating-wrp">
-				<div class="movie-card__rating">${vote_average.toFixed(1)}</div>
+				<div class="rating-wrapper">
+				${vote_average > 0 ? ratingPresent : ratingAbsent}</div>
 				</div>
-		</div>
 		</div>
 	</li>`;
       }
