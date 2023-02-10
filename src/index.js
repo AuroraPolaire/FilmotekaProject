@@ -20,7 +20,7 @@ const renderTrendingMovies = () => {
     ]).then(data => {
       const [genres, movies] = data;
       pagination.reset(movies.total_pages);
-      console.log(pagination);
+
       movieData.genres = genres;
       movieData.movies = movies.results;
       refs.paginationBlock.classList.remove('is-hidden');
@@ -40,18 +40,14 @@ function renderMovieMarkup(movieData) {
 
 renderTrendingMovies();
 
-function loadMoreTrendingPhotos(event) {
+async function loadMoreTrendingPhotos(event) {
   const currentPage = event.page;
 
   try {
-    Promise.all([
-      themoviedbApi.getGenresOfMovies(),
-      themoviedbApi.getTrendingMovies(currentPage),
-    ]).then(data => {
-      const [genres, movies] = data;
+    await themoviedbApi.getTrendingMovies(currentPage).then(data => {
+      console.log(data.results);
 
-      movieData.genres = genres;
-      movieData.movies = movies.results;
+      movieData.movies = data.results;
 
       renderMovieMarkup(movieData);
     });
@@ -85,17 +81,11 @@ const onSubmitSearchMoviesForm = async e => {
   themoviedbApi.searchQuery = searchQuery;
 
   try {
-    await Promise.all([
-      themoviedbApi.getGenresOfMovies(),
-      themoviedbApi.searchMovies(page),
-    ]).then(data => {
-      const [genres, movies] = data;
-
-      pagination.reset(movies.total_pages);
-      runNotification(movies);
-
-      movieData.genres = genres;
-      movieData.movies = movies.results;
+    await themoviedbApi.searchMovies(page).then(data => {
+      console.log(data.results);
+      runNotification(data);
+      pagination.reset(data.total_pages);
+      movieData.movies = data.results;
 
       renderMovieMarkup(movieData);
       refs.paginationBlock.classList.remove('is-hidden');
@@ -109,14 +99,10 @@ async function loadMoreSearchPhotos(event) {
   const currentPage = event.page;
 
   try {
-    await Promise.all([
-      themoviedbApi.getGenresOfMovies(),
-      themoviedbApi.searchMovies(currentPage),
-    ]).then(data => {
-      const [genres, movies] = data;
+    await themoviedbApi.searchMovies(currentPage).then(data => {
+      console.log(data.results);
 
-      movieData.genres = genres;
-      movieData.movies = movies.results;
+      movieData.movies = data.results;
 
       renderMovieMarkup(movieData);
     });

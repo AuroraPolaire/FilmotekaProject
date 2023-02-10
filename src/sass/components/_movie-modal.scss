@@ -157,14 +157,14 @@
   align-items: center;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   cursor: pointer;
-  border: 0px;
+  border: solid #ff6b01;
   background-color: transparent;
 }
 
-// .modal__close-icon {
-//   fill: #ff6b01;
-// }
+.modal__close-icon {
+  fill: #ff6b01;
+}

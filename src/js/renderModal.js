@@ -27,6 +27,7 @@ function createModalInfo({
     })
     .join(', ');
   return `
+  <div class="modal-box">
     <div class="modal">
       <button data-modal-close type="button" class="modal__close-button">
         <svg
@@ -82,6 +83,7 @@ function createModalInfo({
               </button>
             </div>
         </div>
+      </div>
       </div>`;
 }
 

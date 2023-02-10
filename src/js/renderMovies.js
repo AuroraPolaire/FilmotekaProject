@@ -1,5 +1,6 @@
 // import { movieData } from './movieClass';
 import * as url from '../images/No-Image-Placeholder.svg';
+import { movieData } from './movieClass';
 
 export function renderMovies(data) {
   return data.movies
@@ -16,7 +17,7 @@ export function renderMovies(data) {
       }) => {
         const genreCode = `
            <div class="movie-card__genre genre card-info">
-            ${data.getMovieGenresPreview(genre_ids)}
+            ${movieData.getMovieGenresPreview(genre_ids)}
           </div>`;
         const noGenreCode = ``;
         const ratingPresent = `
