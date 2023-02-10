@@ -9,19 +9,23 @@ export function renderMovies(data) {
         poster_path,
         release_date,
         genre_ids,
+        gender,
         name,
         first_air_date,
         vote_average,
+        popularity,
         id,
       }) => {
         const genreCode = `
            <div class="movie-card__genre genre card-info">
-            ${data.getMovieGenresPreview(genre_ids)}
+            ${data.getMovieGenresPreview(genre_ids ? genre_ids : [gender])}
           </div>`;
         const noGenreCode = ``;
         const ratingPresent = `
 				<div class="movie-card__rating-wrp">
-				<div class="movie-card__rating">${vote_average.toFixed(1)}</div>
+				<div class="movie-card__rating">${
+          vote_average ? vote_average.toFixed(1) : popularity.toFixed(1)
+        }</div>
 				</div>
 				`;
         const ratingAbsent = ``;
@@ -39,7 +43,7 @@ export function renderMovies(data) {
 				${title ? title.toUpperCase() : name.toUpperCase()} </p>
 				<div class="movie-card__wrp">
 				<div class="movie-card__genre-wrp">
-				${genre_ids.length > 0 ? genreCode : noGenreCode}
+				${genre_ids ? genreCode : noGenreCode}
 				</div>
 				<div class="movie-card__year card-info">${
           release_date
