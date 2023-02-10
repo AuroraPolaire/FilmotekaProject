@@ -2,7 +2,6 @@ import { onCardClick } from './js/onCardClick';
 import { pagination } from './js/pagination';
 import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
-import './js/slider';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
@@ -10,25 +9,32 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const onSubmitSearchMoviesForm = async e => {
   e.preventDefault();
+  refs.errorNotification.innerHTML = '';
+  const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
+  if (!searchQuery) {
+    return;
+  }
+
   Loading.standard({
     svgColor: '#ff001b',
   });
-  const searchQuery = e.target.searchedMovie.value.trim().toLowerCase();
+  Loading.remove(500);
+
   themoviedbApi.searchQuery = searchQuery;
+
   try {
     await Promise.all([
       themoviedbApi.getGenresOfMovies(),
       themoviedbApi.searchMovies(),
     ]).then(data => {
       const [genres, movies] = data;
-
+      console.log(movies);
       runNotification(movies);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
 
       renderMovieMarkup(movieData);
-      Loading.remove(500);
     });
     const moviesData = await themoviedbApi.searchMovies();
   } catch (error) {
@@ -62,7 +68,7 @@ function renderMovieMarkup(movieData) {
 
 renderTrendingMovies();
 
-// Pagination
+// Pagination;
 const page = pagination.getCurrentPage();
 pagination.on('afterMove', async event => {
   const currentPage = event.page;
@@ -73,6 +79,9 @@ pagination.on('afterMove', async event => {
     console.log(error);
   }
 });
+
+// Modal
+refs.movieContainer.addEventListener('click', onCardClick);
 
 // <<<<<<<<<< FIREBASE >>>>>>>>>>
 
