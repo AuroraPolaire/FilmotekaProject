@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   list-style: none;
   padding-bottom: 20px;
 }
 .trending-movie__card {
   position: relative;
-  border-radius: 5px;
+  border-radius: 6px;
   overflow: hidden;
   width: 280px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -25,27 +25,27 @@
   width: 280px;
   height: 398px;
 }
-.movie-card__wrp {
-  display: flex;
-  align-items: center;
-  // padding: 10px;
-}
 .wrapper {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
 }
 .movie-card__title {
   font-family: var(--primary-font);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.33;
   color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.movie-card__wrp {
+  display: flex;
+  align-items: center;
 }
 .movie-card__genre-wrp {
   position: relative;
 }
-
+.movie-card__genre {
+  margin-right: 16px;
+}
 .movie-card__genre::after {
   position: absolute;
   content: '';
@@ -53,12 +53,10 @@
   background-color: var(--accent);
   width: 1px;
   height: 10px;
-  right: -9px;
+  margin-left: 8px;
   top: 2px;
 }
-.movie-card__year {
-  margin-left: 16px;
-}
+
 .card-info {
   font-family: var(--primary-font);
   font-weight: 500;
@@ -66,13 +64,15 @@
   line-height: 1.33;
   color: var(--accent);
 }
+.rating-wrapper {
+  margin-left: auto;
+}
 .movie-card__rating-wrp {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 8px;
   width: 36px;
-  height: 16px;
+  height: 20px;
   background-color: var(--accent);
   border-radius: 5px;
 }
@@ -81,11 +81,8 @@
   font-family: var(--primary-font);
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 @media screen and (min-width: 768px) {
   .trending-movies__list {
@@ -97,14 +94,20 @@
   }
   .trending-movie__card {
     width: 336px;
+    height: 535px;
   }
   .trending-movie__img {
     width: 336px;
     height: 455px;
   }
-  .movie-card__rating {
-    width: 17px;
-    height: 14px;
+  .movie-card__title {
+    font-size: 15px;
+  }
+  .card-info {
+    font-size: 14px;
+  }
+  .movie-card__genre::after {
+    top: 3px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -113,7 +116,7 @@
   }
   .trending-movie__card {
     width: 394px;
-    height: 640px;
+    height: 660px;
   }
   .trending-movie__img {
     width: 394px;
@@ -123,10 +126,9 @@
     width: 2px;
     height: 14px;
     top: 2px;
-    right: -10px;
   }
   .movie-card__title {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
   }
   .card-info {
@@ -134,9 +136,10 @@
     line-height: 1.2;
   }
   .movie-card__rating-wrp {
-    width: 40px;
-    height: 20px;
-    font-size: 20px;
-    line-height: 24px;
+    width: 48px;
+    height: 28px;
+  }
+  .movie-card__rating {
+    font-size: 15px;
   }
 }
