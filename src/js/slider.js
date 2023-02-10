@@ -27,14 +27,14 @@ function initializeSlider() {
       {
         breakpoint: 1100,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 6,
           infinite: true,
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
         }
       },
       {
