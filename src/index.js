@@ -6,6 +6,9 @@ import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import './js/sliderGlide';
+import './js/teamModal';
+import './js/renderTeamModal';
 
 const page = pagination.getCurrentPage();
 
