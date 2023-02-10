@@ -18,7 +18,7 @@ function initializeSlider() {
     lazyLoad: 'progressive',
     autoplay: true,
     autoplaySpeed: 1000,
-    slidesToShow: 8,
+    slidesToShow: 6,
     infinite: true,
     speed: 1000,
     adaptiveHeigt: true,
