@@ -176,29 +176,68 @@ const monitorAuthState = async () => {
       showLoginState(user);
 
       hideLoginError();
+      // hideLinkError();
+    } else {
+      showLoginForm();
+      lblAuthState.innerHTML = `You're not logged in.`;
+    }
+  });
+};
 
-      const docRef = doc(firestore, 'users', user.uid, 'watched', 'Avatar');
-      // const colRef = collection(docRef, 'watched');
+// Add Film To WATCHED
 
-      const addWatchedFilm = async () => {
+export const addFilmToWatched = async (filmID, filmTitle) => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      const docRef = doc(firestore, 'users', user.uid, 'watched', filmID);
+
+      const addFilm = async () => {
         try {
           await setDoc(docRef, {
-            name: 'Avatar',
-            rating: 8.9,
-            genre: 'action',
+            title: filmTitle,
           });
-          console.log('This FILM has been written to the WATCHED');
+          console.log(
+            `Film "${filmTitle}" with id "${filmID}" has been added to the WATCHED`
+          );
         } catch {
           console.log(`I got an error! ${error}`);
         }
       };
 
-      addWatchedFilm();
-
-      // hideLinkError();
+      addFilm();
     } else {
       showLoginForm();
       lblAuthState.innerHTML = `You're not logged in.`;
+      console.log(`You're not logged in.`);
+    }
+  });
+};
+
+// Add Film To QUEUE
+
+export const addFilmToQueue = async (filmID, filmTitle) => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      const docRef = doc(firestore, 'users', user.uid, 'queue', filmID);
+
+      const addFilm = async () => {
+        try {
+          await setDoc(docRef, {
+            title: filmTitle,
+          });
+          console.log(
+            `Film "${filmTitle}" with id "${filmID}" has been added to the QUEUE`
+          );
+        } catch {
+          console.log(`I got an error! ${error}`);
+        }
+      };
+
+      addFilm();
+    } else {
+      showLoginForm();
+      lblAuthState.innerHTML = `You're not logged in.`;
+      console.log(`You're not logged in.`);
     }
   });
 };
