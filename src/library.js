@@ -1,18 +1,16 @@
 import './js/slider';
-
-
 import '../node_modules/@fortawesome/fontawesome-free/js/solid.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/brands.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
 import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
+import { themoviedbApi } from './js/themoviedb-service';
+import { renderMovies } from './js/renderMovies';
+import { movieData } from './js/movieClass';
+import { onCardClick } from './js/onCardClick';
 
 // <<<<<<<<<< FIREBASE >>>>>>>>>>
-
-console.log('Firebase!');
-
-// console.log(movieContainer);
 
 import {
   hideLoginError,
@@ -56,89 +54,18 @@ const firebaseApp = initializeApp({
 const auth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
 
-// ------------------------------------------------------------
-import { themoviedbApi } from './js/themoviedb-service';
-import { renderMovies } from './js/renderMovies';
-import { movieData } from './js/movieClass';
-
-// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 const watchedBtn = document.querySelector('.library__watched-btn');
 const queueBtn = document.querySelector('.library__queue-btn');
 const libraryList = document.querySelector('.trending-movies__list');
 
 async function fetchMovies(ids) {
   const arrayOfPromises = ids.map(async id => {
-    const response = await themoviedbApi.getMovieById(id);
-    return response;
+    return await themoviedbApi.getMovieById(id);
   });
 
   const movies = await Promise.all(arrayOfPromises);
   return movies;
 }
-
-function renderUserListItems(movies) {
-  console.log(movies);
-  const markup = movies
-    .map(
-      ({
-        title,
-        poster_path,
-        release_date,
-        genre_ids,
-        gender,
-        name,
-        first_air_date,
-        vote_average,
-        popularity,
-        id,
-      }) => {
-        // const genreCode = `
-        //    <div class="movie-card__genre genre card-info">
-        //     ${movieData.getMovieGenresPreview(genre_ids ? genre_ids : [gender])}
-        //   </div>`;
-        const noGenreCode = ``;
-        const ratingPresent = `
-        <div class="movie-card__rating-wrp">
-        <div class="movie-card__rating">${
-          vote_average ? vote_average.toFixed(1) : popularity.toFixed(1)
-        }</div>
-        </div>
-        `;
-        const ratingAbsent = ``;
-        return `
-	<li class="trending-movie__card">
-		<img
-			class="trending-movie__img"
-			src="${poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : url}"
-			alt="${title ? title : name}"
-			loading="lazy"
-      data-id="${id}"
-		/>
-		<div class="wrapper">
-			<p class="movie-card__title">
-				${title ? title.toUpperCase() : name.toUpperCase()} </p>
-				<div class="movie-card__wrp">
-				<div class="movie-card__genre-wrp">
-				${genre_ids ? genreCode : noGenreCode}
-				</div>
-				<div class="movie-card__year card-info">${
-          release_date
-            ? parseFloat(release_date) || ''
-            : parseFloat(first_air_date) || ''
-        } </div>
-				<div class="rating-wrapper">
-				${vote_average > 0 ? ratingPresent : ratingAbsent}</div>
-				</div>
-		</div>
-	</li>`;
-      }
-    )
-    .join('');
-  libraryList.innerHTML = markup;
-}
-
-// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 // <<<<<<<<<< FIREBASE AUTHENTICATION >>>>>>>>>>
 
@@ -199,14 +126,9 @@ const monitorAuthState = async () => {
   });
 };
 
-// Log out
-const logout = async () => {
-  await signOut(auth);
-};
-
 btnLogin.addEventListener('click', loginEmailPassword);
 btnSignup.addEventListener('click', createAccount);
-btnLogout.addEventListener('click', logout);
+btnLogout.addEventListener('click', () => signOut(auth));
 
 monitorAuthState();
 
@@ -215,8 +137,6 @@ const watchedListFromDb = async () => {
 
   const user = auth.currentUser;
   if (user !== null) {
-    // console.log(user.email);
-
     console.log('Generating watched list');
 
     const docRef = collection(firestore, 'users', user.uid, 'watched');
@@ -225,7 +145,6 @@ const watchedListFromDb = async () => {
       try {
         const moviesIdFromDb = await getDocs(docRef);
         moviesIdFromDb.forEach(doc => {
-          // console.log(doc.id);
           arr.push(doc.id);
         });
         return arr;
@@ -240,55 +159,48 @@ const watchedListFromDb = async () => {
 };
 
 const queueListFromDb = async () => {
-  let arr = [];
-
   const user = auth.currentUser;
-  if (user !== null) {
-    // console.log(user.email);
-
-    console.log('Generating queue list');
-
-    const docRef = collection(firestore, 'users', user.uid, 'queue');
-
-    const getMovies = async () => {
-      try {
-        const moviesIdFromDb = await getDocs(docRef);
-        moviesIdFromDb.forEach(doc => {
-          // console.log(doc.id);
-          arr.push(doc.id);
-        });
-        return arr;
-      } catch {
-        console.log(`I got an error! ${error}`);
-      }
-    };
-    return getMovies();
-  } else {
-    console.log(`You're not logged in.`);
+  if (!user) {
+    console.error(`You're not logged in.`);
+    return;
   }
-};
 
-const onWatchedBtnClick = async () => {
-  const ids = await watchedListFromDb();
+  const docRef = collection(firestore, 'users', user.uid, 'queue');
   try {
-    const movies = await fetchMovies(ids);
-    renderUserListItems(movies);
-  } catch (error) {
-    console.log(error.message);
+    const arr = [];
+    const moviesIdFromDb = await getDocs(docRef);
+    moviesIdFromDb.forEach(doc => {
+      arr.push(doc.id);
+    });
+    return arr;
+  } catch {
+    console.error(`I got an error! ${error}`);
   }
 };
 
-const onQueueBtnClick = async () => {
-  const ids = await queueListFromDb();
-  // console.log(ids);
-  try {
-    const movies = await fetchMovies(ids);
-    renderUserListItems(movies);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+function onWatchedBtnClick() {
+  watchedListFromDb()
+    .then(ids => fetchMovies(ids))
+    .then(movies => {
+      console.log('!!!!movies!!!!', movies);
+      movieData.movies = movies;
+      libraryList.innerHTML = renderMovies({ movies });
+      libraryList.addEventListener('click', onCardClick);
+    })
+    .catch(error => console.error(error.message));
+}
+
+function onQueueBtnClick() {
+  queueListFromDb()
+    .then(ids => fetchMovies(ids))
+    .then(movies => {
+      console.log('!!!!movies!!!!', movies);
+      movieData.movies = movies;
+      libraryList.innerHTML = renderMovies({ movies });
+      libraryList.addEventListener('click', onCardClick);
+    })
+    .catch(error => console.error(error.message));
+}
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
-
