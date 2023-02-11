@@ -4,4 +4,6 @@ export const refs = {
   movieContainer: document.querySelector('.trending-movies__list'),
   slickSlider: document.querySelector('.slider'),
   errorNotification: document.querySelector('.error-notification'),
+  submitNotification: document.querySelector('.submit-notification'),
+  paginationBlock: document.querySelector('#pagination'),
 };

@@ -1,7 +1,9 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from './refs';
+import { themoviedbApi } from '../js/themoviedb-service.js';
 
 export function runNotification(moviesData) {
+  const searchQuery = themoviedbApi.searchQuery.toUpperCase();
+
   if (!moviesData.total_results) {
     refs.errorNotification.innerHTML =
       'Search result is not successful. Enter the correct movie name.';
@@ -13,22 +15,35 @@ export function runNotification(moviesData) {
     return;
   }
   if (moviesData.total_results === 1) {
-    Notify.success('We found 1 movie', {
-      position: 'center-top',
-      borderRadius: '2px',
-      success: {
-        background: '#ffffff',
-        textColor: '#000',
-      },
-    });
+    refs.submitNotification.innerHTML = `${moviesData.total_results} movie found on your request ${searchQuery}`;
+
+    const alertCleaning = setTimeout(() => {
+      refs.submitNotification.innerHTML = '';
+    }, 6000);
+
+    // Notify.success('We found 1 movie', {
+    //   position: 'center-top',
+    //   borderRadius: '2px',
+    //   success: {
+    //     background: '#ffffff',
+    //     textColor: '#000',
+    //   },
+    // });
   } else {
-    Notify.success(`${moviesData.total_results} movies found`, {
-      position: 'center-top',
-      borderRadius: '2px',
-      success: {
-        background: '#ffffff',
-        textColor: '#000',
-      },
-    });
+    refs.submitNotification.innerHTML = `${moviesData.total_results} movies found on your request ${searchQuery}`;
+
+    const alertCleaning = setTimeout(() => {
+      refs.submitNotification.innerHTML = '';
+    }, 6000);
+    // const notificationSentence = `${moviesData.total_results} movies found on your request ${themoviedbApi.searchQuery}`;
+    // refs.movieNotifications.innerHTML = notificationSentence;
+    //   Notify.success(`${moviesData.total_results} movies found`, {
+    //     position: 'center-top',
+    //     borderRadius: '2px',
+    //     success: {
+    //       background: '#ffffff',
+    //       textColor: '#000',
+    //     },
+    //   });
   }
 }

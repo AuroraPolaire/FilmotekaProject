@@ -18,11 +18,32 @@ function initializeSlider() {
     lazyLoad: 'progressive',
     autoplay: true,
     autoplaySpeed: 1000,
-    slidesToShow: 6,
     infinite: true,
     speed: 1000,
     adaptiveHeigt: true,
     cssEase: 'ease',
+    slidesToShow: 8,
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 6,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        }
+      }]
+    
   });
 }
 
@@ -40,7 +61,7 @@ function renderTrendingFilms() {
 function filmCardSlider(films) {
   return films
     .map(({ original_title, poster_path, vote_average, movie_id, name }) => {
-      return `<div class="slider__item"><img class="slider-image" src=${IMG_URL}${poster_path} alt="${original_title}${name}" data-id="${movie_id}" onerror="this.onerror=null;this.src="https://i.postimg.cc/6pzyh7Wc/pngwing-com.png";" /></div>`;
+      return `<div class="slider__item"><img class="slider-image" src=${IMG_URL}${poster_path} alt="${original_title}${name}" data-id="${movie_id}" onerror="this.onerror=null;this.src="https://i.postimg.cc/6pzyh7Wc/pngwing-com.png";" /><span class="trending-raiting">${vote_average.toFixed(1)}</span></div>`;
     })
     .join('');
 }

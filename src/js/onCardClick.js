@@ -1,7 +1,9 @@
 import { themoviedbApi } from '../js/themoviedb-service';
+import { movieData } from './movieClass';
 import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
 import { addFilmToWatched, addFilmToQueue } from '../index';
+import { movieData } from './movieClass';
 
 const closeModal = (e, modal) => {
   if (e.code === 'Escape') {
@@ -11,19 +13,21 @@ const closeModal = (e, modal) => {
 };
 
 const onCardClick = async e => {
+  // console.log(e.target.dataset);
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+
   const id = e.target.dataset.id;
+  const targetMovie = movieData.getMovieById(id);
   let title;
 
   try {
-    const movie = await Promise.all([
-      themoviedbApi.getMovieById(id),
-      themoviedbApi.getMovieTrailer(id),
-    ]);
+    const trailer = themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
+      console.log(err);
+    });
 
-    const modal = basicLightbox.create(createModalInfo(movie[0]), {
+    const modal = basicLightbox.create(createModalInfo(targetMovie), {
       onShow: modal => {
         toggleModalOpen();
         modal.element().querySelector('button[data-modal-close]').onclick =
@@ -40,13 +44,20 @@ const onCardClick = async e => {
     });
     modal.show();
 
-    showTrailer(movie);
+    if (trailer) {
+      showTrailer(trailer);
+    }
 
-    title = movie[0].original_title;
+    title =
+      targetMovie.name ||
+      targetMovie.title ||
+      targetMovie.original_name ||
+      targetMovie.original_title;
   } catch (error) {
     console.log(error);
   }
 
+  // <<<<<<<<BUTTONS HANDLERS>>>>>>>>>>>>>
   const addToWatchedBtn = document.querySelector('.modal__btn--watched');
   const addToQueueBtn = document.querySelector('.modal__btn--queue');
 
@@ -67,21 +78,19 @@ const onCardClick = async e => {
   addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
 };
 
+// <<<<<<<<OTHER MODAL HANDLERS>>>>>>>>>>>>>>>
 function toggleModalOpen() {
   document.body.classList.toggle('modal-open');
 }
 
-function showTrailer(movie) {
-  if (movie[1].results.length > 0) {
-    const trailerUrl = movie[1].results[0].key;
-    const mediaContainer = document.querySelector('.modal__media-container');
+function showTrailer(trailer) {
+  const mediaContainer = document.querySelector('.modal__media-container');
 
-    mediaContainer.addEventListener('click', e => {
-      mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
-        src="https://www.youtube.com/embed/${trailerUrl}"> frameborder="0" allowfullscreen
+  mediaContainer.addEventListener('click', e => {
+    mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
+        src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
         </iframe>`;
-    });
-  }
+  });
 }
 
 export { onCardClick };

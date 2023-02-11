@@ -1,0 +1,45 @@
+#back-to-top-btnId {
+  position: fixed;
+  z-index: 100;
+  right: 40px;
+  bottom: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  transition: transform var(--transition-dur-and-func);
+  
+  @media screen and (min-width: 768px) {
+    right: 10px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+}
+
+.back-to-top__icon {
+  width: 36px;
+  height: 36px;
+  fill: var(--accent);
+  transform: scale(1);
+  transition: transform var(--transition-dur-and-func);
+
+  @media screen and (min-width: 768px) {
+    width: 42px;
+    height: 42px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 48px;
+    height: 48px;
+  }
+
+  .back-to-top-btn:hover &,
+  .back-to-top-btn:focus & {
+    transform: scale(1.3);
+  }
+}

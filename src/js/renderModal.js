@@ -1,12 +1,6 @@
-// const YOUTUBE_URL = 'https://www.youtube.com/embed/';
-
-{
-  /* <iframe class="modal__trailer" width="420" height="315"
-        src="${videoUrl}"> frameborder="0" allowfullscreen
-        </iframe> */
-}
 import * as url from '../images/No-Image-Placeholder.svg';
 import * as svg from '../images/symbol-defs.svg';
+import { movieData } from './movieClass';
 
 function createModalInfo({
   title,
@@ -16,17 +10,13 @@ function createModalInfo({
   poster_path,
   vote_average,
   vote_count,
-  genres,
+  genre_ids,
   name,
+  original_name
 }) {
-  // youtubeKey
-  // const videoUrl = YOUTUBE_URL.concat(youtubeKey);
-  const genresString = genres
-    .map(el => {
-      return el.name;
-    })
-    .join(', ');
+  const genresString = movieData.getMovieGenres(genre_ids);
   return `
+  <div class="modal-box">
     <div class="modal">
       <button data-modal-close type="button" class="modal__close-button">
         <svg
@@ -50,23 +40,32 @@ function createModalInfo({
       </div>     
       <div class="modal__info">
           <h1>${title ? title : name}</h1>
-            <div class="modal__info-short">
-              <ul class="modal__info--keys">
-                <li class="modal__info-item">Vote / Votes:</li>
-                <li class="modal__info-item">Popularity:</li>
-                <li class="modal__info-item">Original Title:</li>
-                <li class="modal__info-item">Genre:</li>
-              </ul>
-              <ul class="modal__info--values">
-                <li class="modal__info-item">
-                  <span class="modal__info-item--accent modal__rating">${vote_average}</span> /
-                  <span class="modal__info-item--accent modal__total-rates">${vote_count}</span>
-                </li>
-                <li class="modal__info-item">${popularity}</li>
-                <li class="modal__info-item modal__info-item--title">${original_title}</li>
-                <li class="modal__info-item">${genresString}</li>
-              </ul>
-            </div>
+          <table class="modal__info-short">
+              <tr class="modal__info-item">
+                <td class="modal__info--key">Vote / Votes:</td>
+                <td class="modal__info--value">
+                  <span class="modal__info-item--accent modal__rating"
+                    >${vote_average}</span
+                  >
+                  /
+                  <span class="modal__info-item--accent modal__total-rates"
+                    >${vote_count}</span
+                  >
+                </td>
+              </tr>
+              <tr class="modal__info-item">
+                <td class="modal__info--key">Popularity:</td>
+                <td class="modal__info--value">${popularity}</td>
+              </tr>
+              <tr class="modal__info-item">
+                <td class="modal__info--key">Original Title:</td>
+                <td class="modal__info--value modal__info-item--title">${original_title ? original_title : original_name}</td>
+              </tr>
+              <tr class="modal__info-item">
+                <td class="modal__info--key">Genre:</td>
+                <td class="modal__info--value">${genresString}</td>
+              </tr>
+            </table>
             <div class="modal__description">
               <h3>ABOUT</h3>
               <p>
@@ -82,46 +81,8 @@ function createModalInfo({
               </button>
             </div>
         </div>
+      </div>
       </div>`;
 }
 
 export { createModalInfo };
-
-{
-  /* <ul class="modal__info--keys">
-                <li class="modal__info-item">Vote / Votes:</li>
-                <li class="modal__info-item">Popularity:</li>
-                <li class="modal__info-item">Original Title:</li>
-                <li class="modal__info-item">Genre:</li>
-              </ul>
-              <ul class="modal__info--values">
-                <li class="modal__info-item">
-                  <span class="modal__info-item--accent modal__rating">${vote_average}</span> /
-                  <span class="modal__info-item--accent modal__total-rates">${vote_count}</span>
-                </li>
-                <li class="modal__info-item">${popularity}</li>
-                <li class="modal__info-item">${original_title}</li>
-                <li class="modal__info-item">${genresString}</li>
-              </ul> */
-}
-
-// <ul class="modal__info--keys">
-//   <ul class="modal__info-item">
-//       <li class="modal__info-item--key">Vote / Votes:</li>
-//       <li><span class="modal__info-item--accent modal__rating">${vote_average}</span> /
-//           <span class="modal__info-item--accent modal__total-rates">${vote_count}</span></p>
-//       </li>
-//   </ul>
-//   <ul class="modal__info-item">
-//     <li class="modal__info-item--key">Popularity:</li>
-//     <li>${popularity}</li>
-//   </ul>
-//   <ul class="modal__info-item">
-//   <li class="modal__info-item--key">Original Title:</li>
-//     <li>${original_title}</li>
-//   </ul>
-//   <ul class="modal__info-item">
-//   <li class="modal__info-item--key">Genre:</li>
-//     <li>${genresString}</li>
-//   </ul>
-// </ul>

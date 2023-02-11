@@ -218,6 +218,8 @@
   right: -7px;
   border: none;
   background: transparent;
+  cursor: pointer;
+
   color: var(--text-light);
 
   @media screen and (min-width: 1280px) {
@@ -253,4 +255,9 @@
 .error-notification {
   padding-top: 20px;
   color: #ff001b;
+}
+
+.submit-notification {
+  padding-top: 5px;
+  color: #fff;
 }
