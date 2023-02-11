@@ -1,5 +1,12 @@
+.modal-box {
+  display: flex;
+  justify-content: center;
+}
+
 .modal {
-  max-width: 280px;
+  display: flex;
+  width: 90%;
+  position: relative;
   max-height: 609px;
   background-color: #fff;
   padding: 48px 20px 40px 20px;
@@ -20,12 +27,12 @@
 
 .modal__media-container {
   box-sizing: content-box;
-  margin-bottom: 20px;
+  margin-right: 20px;
   flex: 0 0 auto;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
-    margin-right: 68px;
+    margin-right: 10px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -209,5 +216,68 @@
   &:focus {
     fill: var(--accent);
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .modal-box {
+    display: flex;
+    justify-content: center;
+    max-height: 98vh;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+
+    max-height: 100%;
+    max-width: 95%;
+    padding: 30px 10px 10px 10px;
+    position: relative;
+  }
+
+  .modal__trailer {
+    width: 100%;
+  }
+
+  .modal__close-button {
+    top: 5px;
+    right: 10px;
+  }
+
+  .modal__poster {
+    width: 200px;
+  }
+
+  .modal__info h1 {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+
+  .modal__description h3 {
+    display: none;
+  }
+
+  .modal__media-container {
+    margin-bottom: 10px;
+  }
+
+  .modal__info-short {
+    margin-bottom: 0px;
+    border-spacing: 0 5px;
+  }
+
+  .basicLightbox__placeholder {
+    height: 98vh;
+    width: 95%;
+  }
+
+  .modal__description {
+    margin-bottom: 10px;
+  }
+
+  .modal__buttons button {
+    height: 35px;
+    padding: 11px 10px 12px;
   }
 }
