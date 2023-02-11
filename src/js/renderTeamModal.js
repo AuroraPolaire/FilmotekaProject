@@ -27,10 +27,10 @@ export function openModal(e) {
       <div class="glide__arrows" data-glide-el="controls">
             <button style="padding: 10px;
       box-shadow: none;
-      border: none; left: 10px" class="glide__arrow glide__arrow--left arrow__footer" data-glide-dir="<">&#5130;</button>
+      border: none; left: 10px; color: #545454" class="glide__arrow glide__arrow--left arrow__footer" data-glide-dir="<">&NestedLessLess;</button>
             <button style="padding: 10px;
       box-shadow: none;
-      border: none; right: 10px" class="glide__arrow glide__arrow--right arrow__footer" data-glide-dir=">">&#5125;</button>
+      border: none; right: 10px; color: #545454" class="glide__arrow glide__arrow--right arrow__footer" data-glide-dir=">">&NestedGreaterGreater;</button>
         </div>
         <button class="footermodalbtn-close" data-footer-close>	
 &#9587;</button>
@@ -43,8 +43,17 @@ export function openModal(e) {
   const closeModalBtn = document.querySelector('[data-footer-close]');
 
   const studentTmlMarkup = students
-    .map(({ img, name, role, gitHabLink, FB_Link, LN_Link, description }) => {
-      return `<li class='glide__slide--elem footer-modal__card'>
+    .map(
+      ({
+        img,
+        name,
+        role,
+        githubLink,
+        facebookLink,
+        linkedinLink,
+        description,
+      }) => {
+        return `<li class='glide__slide--elem footer-modal__card'>
     <div class='border__outside'>
       <div class='border__inside'>
         <img class='student-foto' src="${img}" alt="${name}" />
@@ -55,17 +64,17 @@ export function openModal(e) {
       <p class='student__role'>${role}</p>
       <ul class='footer__social'>
         <li class='footer__sociallink'>
-          <a class='student__link' href="${gitHabLink}" target='_blank'>
+          <a class='student__link' href="${githubLink}" target='_blank'>
             <i class='fa-brands fa-github fa-xl'></i>
           </a>
         </li>
         <li class='footer__sociallink'>
-          <a class='student__linc' href="${FB_Link}" target='_blank'>
+          <a class='student__linc' href="${facebookLink}" target='_blank'>
             <i class='fa-brands fa-facebook fa-xl'></i>
           </a>
         </li>
         <li class='footer__sociallink'>
-          <a class='student__link' href="${LN_Link}" target='_blank'>
+          <a class='student__link' href="${linkedinLink}" target='_blank'>
             <i class='fa-brands fa-linkedin fa-xl'></i>
           </a>
         </li>
@@ -76,7 +85,8 @@ export function openModal(e) {
       </p>
     </div>
   </li>`;
-    })
+      }
+    )
     .join('');
 
   slide.insertAdjacentHTML('beforeend', studentTmlMarkup);
