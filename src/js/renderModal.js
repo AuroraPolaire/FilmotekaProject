@@ -1,6 +1,7 @@
 import * as url from '../images/No-Image-Placeholder.svg';
 import * as svg from '../images/symbol-defs.svg';
 import { movieData } from './movieClass';
+// import { themoviedbApi } from '../js/themoviedb-service';
 
 function createModalInfo({
   title,
@@ -12,7 +13,7 @@ function createModalInfo({
   vote_count,
   genre_ids,
   name,
-  original_name
+  original_name,
 }) {
   const genresString = movieData.getMovieGenres(genre_ids);
   return `
@@ -29,6 +30,7 @@ function createModalInfo({
             <use href="${svg}#close-icon"></use>
           </svg>
       </button>
+
       <div class="modal__media-container">
         <img
           class="modal__poster"
@@ -37,7 +39,8 @@ function createModalInfo({
           }"
           alt="${title ? title : name} movie poster"
         />
-      </div>     
+      </div>
+
       <div class="modal__info">
           <h1>${title ? title : name}</h1>
           <table class="modal__info-short">
@@ -59,7 +62,9 @@ function createModalInfo({
               </tr>
               <tr class="modal__info-item">
                 <td class="modal__info--key">Original Title:</td>
-                <td class="modal__info--value modal__info-item--title">${original_title ? original_title : original_name}</td>
+                <td class="modal__info--value modal__info-item--title">${
+                  original_title ? original_title : original_name
+                }</td>
               </tr>
               <tr class="modal__info-item">
                 <td class="modal__info--key">Genre:</td>

@@ -88,8 +88,8 @@ function showTrailer(trailer) {
 
   mediaContainer.addEventListener('click', e => {
     mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
-        src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
-        </iframe>`;
+		src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
+		</iframe>`;
   });
 }
 
