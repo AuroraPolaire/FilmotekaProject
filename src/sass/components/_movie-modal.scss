@@ -51,14 +51,14 @@
 .modal__trailer {
   width: 240px;
   height: 315px;
-  
-    @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: 768px) {
     width: 300px;
   }
 
   @media screen and (min-width: 1024px) {
     width: 420px;
-    height: 315px;  
+    height: 315px;
   }
 }
 
@@ -101,7 +101,7 @@
   min-width: 72px;
 }
 
-.modal__info--value{
+.modal__info--value {
   padding-left: 40px;
 }
 
@@ -171,12 +171,4 @@
   cursor: pointer;
   border: solid #ff6b01;
   background-color: transparent;
-<<<<<<< HEAD
 }
-
-.modal__close-icon {
-  fill: #ff6b01;
-}
-=======
-}
->>>>>>> 9ca3c48a57431cdd485bcf6bde50f198d65b72b4
