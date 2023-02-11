@@ -1,7 +1,7 @@
 import { openModal } from './renderTeamModal';
 
 const refs = {
-  footerModal: document.querySelector('.footer-modal'),
+  footerModal: document.querySelector('.team-modal'),
   openModalLink: document.querySelector('[data-footer-open]'),
   modal: document.querySelector('[data-modal-footer]'),
   backdrop: document.querySelector('.js-backdrop'),
@@ -13,7 +13,6 @@ refs.backdrop.addEventListener('click', onBackdropClick);
 
 export function onClickEscape(event) {
   if (event.key === 'Escape') {
-    console.log(event.key);
     refs.modal.classList.add('is-hidden');
     refs.addBodyClass.classList.remove('modal-open');
     document.removeEventListener('keydown', onClickEscape);
