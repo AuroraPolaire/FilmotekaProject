@@ -21,11 +21,13 @@ const onCardClick = async e => {
   }
 
   const id = e.target.dataset.id;
-  const targetMovie = movieData.getMovieById(id); 
+  const targetMovie = movieData.getMovieById(id);
   let title;
 
   try {
-    const trailer = themoviedbApi.getMovieTrailer(targetMovie.id).catch((err)=>{console.log(err)});
+    const trailer = themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
+      console.log(err);
+    });
 
     const modal = basicLightbox.create(createModalInfo(targetMovie), {
       onShow: modal => {
@@ -48,25 +50,29 @@ const onCardClick = async e => {
       showTrailer(trailer);
     }
 
-    title = targetMovie.original_title ? targetMovie.original_title : targetMovie.original_name;
+    title =
+      targetMovie.name ||
+      targetMovie.title ||
+      targetMovie.original_name ||
+      targetMovie.original_title;
   } catch (error) {
     console.log(error);
   }
 
-// <<<<<<<<BUTTONS HANDLERS>>>>>>>>>>>>>
+  // <<<<<<<<BUTTONS HANDLERS>>>>>>>>>>>>>
   const addToWatchedBtn = document.querySelector('.modal__btn--watched');
   const addToQueueBtn = document.querySelector('.modal__btn--queue');
 
-  console.log(targetMovie.id);
+  console.log(id);
   console.log(title);
 
   const onAddToWatchedBtnClick = () => {
-    addFilmToWatched(targetMovie.id, title);
+    addFilmToWatched(id, title);
     addToWatchedBtn.removeEventListener('click', onAddToWatchedBtnClick);
   };
 
   const onAddToQueueBtnClick = () => {
-    addFilmToQueue(targetMovie.id, title);
+    addFilmToQueue(id, title);
     addToQueueBtn.removeEventListener('click', onAddToQueueBtnClick);
   };
 
@@ -80,14 +86,13 @@ function toggleModalOpen() {
 }
 
 function showTrailer(trailer) {
-
   const mediaContainer = document.querySelector('.modal__media-container');
 
-    mediaContainer.addEventListener('click', e => {
-      mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
+  mediaContainer.addEventListener('click', e => {
+    mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
         src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
         </iframe>`;
-    });
+  });
 }
 
 export { onCardClick };
