@@ -5,8 +5,6 @@ import * as basicLightbox from 'basiclightbox';
 import { addFilmToWatched, addFilmToQueue } from '../index';
 import { movieData } from './movieClass';
 
-console.log(movieData.movies);
-
 const closeModal = (e, modal) => {
   if (e.code === 'Escape') {
     modal.close();
@@ -15,7 +13,7 @@ const closeModal = (e, modal) => {
 };
 
 const onCardClick = async e => {
-  console.log(e.target.dataset);
+  // console.log(e.target.dataset);
   if (e.target.nodeName !== 'IMG') {
     return;
   }

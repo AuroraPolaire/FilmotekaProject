@@ -5,7 +5,8 @@ import { themoviedbApi } from './js/themoviedb-service';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { runSpinner } from './js/runSpinner';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
@@ -13,6 +14,7 @@ import './js/renderTeamModal';
 const page = pagination.getCurrentPage();
 
 const renderTrendingMovies = () => {
+  runSpinner();
   try {
     Promise.all([
       themoviedbApi.getGenresOfMovies(),
@@ -20,6 +22,7 @@ const renderTrendingMovies = () => {
     ]).then(data => {
       const [genres, movies] = data;
       pagination.reset(movies.total_results);
+      // console.log(movies);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
@@ -42,10 +45,16 @@ renderTrendingMovies();
 
 async function loadMoreTrendingPhotos(event) {
   const currentPage = event.page;
+  runSpinner();
+  window.scrollTo({
+    top: 100,
+    left: 100,
+    behavior: 'smooth',
+  });
 
   try {
     await themoviedbApi.getTrendingMovies(currentPage).then(data => {
-      console.log(data.results);
+      // console.log(data.results);
 
       movieData.movies = data.results;
 
@@ -73,16 +82,14 @@ const onSubmitSearchMoviesForm = async e => {
     Notify.failure('Please enter query');
     return;
   }
-  Loading.standard({
-    svgColor: '#ff001b',
-  });
-  Loading.remove(500);
+  runSpinner();
 
   themoviedbApi.searchQuery = searchQuery;
+  refs.searchForm.reset();
 
   try {
     await themoviedbApi.searchMovies(page).then(data => {
-      console.log(data.results);
+      // console.log(data.results);
       runNotification(data);
       pagination.reset(data.total_results);
       movieData.movies = data.results;
@@ -97,10 +104,16 @@ const onSubmitSearchMoviesForm = async e => {
 
 async function loadMoreSearchPhotos(event) {
   const currentPage = event.page;
+  runSpinner();
+  window.scrollTo({
+    top: 100,
+    left: 100,
+    behavior: 'smooth',
+  });
 
   try {
     await themoviedbApi.searchMovies(currentPage).then(data => {
-      console.log(data.results);
+      // console.log(data.results);
 
       movieData.movies = data.results;
 
