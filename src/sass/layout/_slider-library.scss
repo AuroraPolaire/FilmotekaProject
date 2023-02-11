@@ -6,25 +6,10 @@
     font-size: 13px;
 }
 .slider-title {
-    font-family: inherit;
     font-size: 26px;
     font-weight: 700;
     text-align: center;
     padding-bottom: 15px;
-}
-.slick-slider {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -ms-touch-action: pan-y;
-    touch-action: pan-y;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .slick-initialized .slick-slide {
@@ -144,7 +129,7 @@
     width: 40px;
     height: 20px;
     background: var(--accent);
-    border-radius: 15px;
+    border-radius: 10px;
 
     font-family: 'Roboto';
     font-style: normal;
@@ -158,12 +143,16 @@
     margin-right: auto;
     text-transform: uppercase;
     position: absolute;
-    top: 15;
-    left: 16;
+    top: 14;
+    left: 15;
     color: var(--text-light);
 }
 
 .slick-slide img {
     width: 150px;
-    height: 180px;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
 }
