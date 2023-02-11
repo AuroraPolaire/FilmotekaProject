@@ -8,9 +8,9 @@
 //       rgba(0, 0, 0, 0.56)
 //     ),
     url(../images/header-library-bg-mobile@1x.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 
   @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
     screen and (min-resolution: 192dpi) and (max-width: 767px),
@@ -34,7 +34,6 @@
   //       rgba(0, 0, 0, 0.56),
   //       rgba(0, 0, 0, 0.56)
   //     ),
-
       url('../images/header-library-bg-tablet@1x.jpg');
   }
 
@@ -49,7 +48,6 @@
     //   ),
       url('../images/header-library-bg-tablet@2x.jpg');
   }
-
 
   // desktop background
 
@@ -76,19 +74,36 @@
   }
 }
 
-
 .library-buttons__list {
-display: flex;
-justify-content: center;
-gap: 20px;
-margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 60px;
 
-@media screen and (min-width: 768px) {
-  gap: 32px;
-  margin-top: 40px;
-}
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+    margin-top: 40px;
+  }
 
-@media screen and (min-width: 1200px) {
-  gap: 16px;
+  @media screen and (min-width: 1200px) {
+    gap: 16px;
+  }
 }
+.library__watched-btn {
+  cursor: pointer;
+  transition: var(--transition-dur-and-func);
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+  }
+}
+.library__queue-btn {
+  cursor: pointer;
+  transition: var(--transition-dur-and-func);
+
+  &:hover,
+  &:focus {
+    border: 1px solid transparent;
+  }
 }

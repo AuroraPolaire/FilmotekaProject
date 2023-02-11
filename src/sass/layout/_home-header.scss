@@ -130,8 +130,8 @@
 .header__site-nav-list {
   display: flex;
   gap: 40px;
+  align-items: center;
 }
-
 .header__site-nav-link_current,
 .header__site-nav-link {
   position: relative;
@@ -160,7 +160,17 @@
   height: 3px;
   background-color: var(--accent-2);
 }
+.auth__items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
 
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
 .search-form {
   position: relative;
   margin-top: 54px;
