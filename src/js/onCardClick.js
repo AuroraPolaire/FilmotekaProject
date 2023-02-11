@@ -4,6 +4,7 @@ import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
 import { addFilmToWatched, addFilmToQueue } from '../index';
 import { movieData } from './movieClass';
+import { findTrailer } from './findTrailer';
 
 const closeModal = (e, modal) => {
   if (e.code === 'Escape') {
@@ -23,9 +24,10 @@ const onCardClick = async e => {
   let title;
 
   try {
-    const trailer = themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
+    const trailerArr = await themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
       console.log(err);
     });
+    const trailer = findTrailer(trailerArr.results);
 
     const modal = basicLightbox.create(createModalInfo(targetMovie), {
       onShow: modal => {
