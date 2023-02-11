@@ -1,6 +1,5 @@
 import './js/slider';
 
-
 import '../node_modules/@fortawesome/fontawesome-free/js/solid.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/brands.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
@@ -291,4 +290,3 @@ const onQueueBtnClick = async () => {
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
-
