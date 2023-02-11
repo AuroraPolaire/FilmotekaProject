@@ -1,12 +1,45 @@
-:root {
-    --var-bgcolor: #fff;
-    --var-fontcolor: #000;
-  }
-  [dark] {
-    --var-bgcolor: #333;
-    --var-fontcolor: #eee;
-  }
-  body {
-    background-color: var(--var-bgcolor);
-    color: var(--var-fontcolor);
-  }
+body {
+    background-color: #f2f2f2;
+    color: #333;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.dark-theme {
+    background-color: #333;
+    color: #f2f2f2;
+}
+
+#theme-switch-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    // display: block;
+}
+
+.theme-icon {
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+#sun {
+    transform: rotate(0);
+    fill: #333;
+    transition: transform 0.5s ease-in-out;
+}
+
+.dark-theme #sun {
+    transform: rotate(180deg);
+    fill: #f2f2f2;
+}
+
+#moon {
+    transform: rotate(-180deg);
+    fill: #f2f2f2;
+    transition: transform 0.5s ease-in-out;
+}
+
+.dark-theme #moon {
+    transform: rotate(0);
+    fill: #f2f2f2;
+}
