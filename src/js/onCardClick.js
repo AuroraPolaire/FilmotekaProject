@@ -24,9 +24,11 @@ const onCardClick = async e => {
   let title;
 
   try {
-    const trailerArr = await themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
-      console.log(err);
-    });
+    const trailerArr = await themoviedbApi
+      .getMovieTrailer(targetMovie.id)
+      .catch(err => {
+        console.log(err);
+      });
     const trailer = findTrailer(trailerArr.results);
 
     const modal = basicLightbox.create(createModalInfo(targetMovie), {
@@ -46,7 +48,9 @@ const onCardClick = async e => {
     });
     modal.show();
 
+    const trailerBtn = document.querySelector('.modal__btn-trailer');
     if (trailer) {
+      trailerBtn.classList.remove('visually-hidden');
       showTrailer(trailer);
     }
 
@@ -87,11 +91,10 @@ function toggleModalOpen() {
 
 function showTrailer(trailer) {
   const mediaContainer = document.querySelector('.modal__media-container');
-
   mediaContainer.addEventListener('click', e => {
     mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
-		src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
-		</iframe>`;
+  	src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
+  	</iframe>`;
   });
 }
 
