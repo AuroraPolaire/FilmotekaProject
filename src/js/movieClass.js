@@ -18,13 +18,13 @@ class MovieData {
     return [...genresArray.slice(0, 2), 'other'].join(', ');
   }
 
-  // getMovieGenres(genreIdList) {
-  //   return genreIdList.map(id => this.#genres.get(id)).join(', ');
-  // }
+  getMovieGenres(genreIdList) {
+    return genreIdList.map(id => this.#genres.get(id)).join(', ');
+  }
 
-  // getMovieById(id) {
-  //   return this.movies.find(el => el.id === parseInt(id));
-  // }
+  getMovieById(id) {
+    return this.movies.find(el => el.id === parseInt(id));
+  }
 
   get movies() {
     return this.#movies;

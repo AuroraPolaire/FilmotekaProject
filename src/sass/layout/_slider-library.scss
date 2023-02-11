@@ -5,7 +5,13 @@
     background-color: var(--text-light);
     font-size: 13px;
 }
-
+.slider-title {
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 15px;
+}
 .slick-slider {
     position: relative;
     display: block;
@@ -152,12 +158,12 @@
     margin-right: auto;
     text-transform: uppercase;
     position: absolute;
-    top: 14;
-    left: 15;
+    top: 15;
+    left: 16;
     color: var(--text-light);
 }
 
 .slick-slide img {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 180px;
 }

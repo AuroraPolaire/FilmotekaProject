@@ -1,9 +1,9 @@
 .modal {
-  position: relative;
-  box-sizing: content-box;
   max-width: 280px;
+  max-height: 609px;
   background-color: #fff;
   padding: 48px 20px 40px 20px;
+  overflow-y: auto;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -48,9 +48,23 @@
   }
 }
 
+.modal__trailer {
+  width: 240px;
+  height: 315px;
+  
+    @media screen and (min-width: 768px) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 420px;
+    height: 315px;  
+  }
+}
+
 .modal__info h1 {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.172;
@@ -77,30 +91,24 @@
 }
 
 .modal__info-short {
-  display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  border-collapse: separate;
+  border-spacing: 0 8px;
 }
 
-.modal__info--keys {
-  flex: 0 0 auto;
-  width: max-content;
-  margin-right: 40px;
+.modal__info--key {
   color: #8c8c8c;
+  min-width: 72px;
+}
 
-  @media screen and (min-width: 1024px) {
-    margin-right: 85px;
-  }
+.modal__info--value{
+  padding-left: 40px;
 }
 
 .modal__info-item {
-  margin: 0;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
-}
-
-.modal__info-item:not(:last-child) {
-  margin-bottom: 8px;
 }
 
 .modal__info-item--accent {
@@ -163,8 +171,12 @@
   cursor: pointer;
   border: solid #ff6b01;
   background-color: transparent;
+<<<<<<< HEAD
 }
 
 .modal__close-icon {
   fill: #ff6b01;
 }
+=======
+}
+>>>>>>> 9ca3c48a57431cdd485bcf6bde50f198d65b72b4

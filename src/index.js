@@ -19,7 +19,7 @@ const renderTrendingMovies = () => {
       themoviedbApi.getTrendingMovies(page),
     ]).then(data => {
       const [genres, movies] = data;
-      pagination.reset(movies.total_pages);
+      pagination.reset(movies.total_results);
 
       movieData.genres = genres;
       movieData.movies = movies.results;
@@ -84,7 +84,7 @@ const onSubmitSearchMoviesForm = async e => {
     await themoviedbApi.searchMovies(page).then(data => {
       console.log(data.results);
       runNotification(data);
-      pagination.reset(data.total_pages);
+      pagination.reset(data.total_results);
       movieData.movies = data.results;
 
       renderMovieMarkup(movieData);
