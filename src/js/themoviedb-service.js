@@ -22,7 +22,7 @@ class ThemoviedbApi {
 
   async getTrendingMovies(page) {
     const { data } = await Axios.get(
-      `${ThemoviedbApi.URL}3/trending/all/day?api_key=${ThemoviedbApi.API_KEY}&page=${page}`
+      `${ThemoviedbApi.URL}3/trending/movie/day?api_key=${ThemoviedbApi.API_KEY}&page=${page}`
     );
     return data;
   }

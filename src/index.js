@@ -6,6 +6,7 @@ import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
 import { runNotification } from './js/runNotification';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { runSpinner } from './js/runSpinner';
 import '../node_modules/@fortawesome/fontawesome-free/js/solid.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/brands.min';
 import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
