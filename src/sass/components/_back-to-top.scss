@@ -8,8 +8,7 @@
   cursor: pointer;
 
   transition: transform var(--transition-dur-and-func);
-  fill: var(--accent-2);
-
+  
   @media screen and (min-width: 768px) {
     right: 10px;
   }
@@ -25,7 +24,7 @@
 .back-to-top__icon {
   width: 36px;
   height: 36px;
-  fill: var(--accent-2);
+  fill: var(--accent);
   transform: scale(1);
   transition: transform var(--transition-dur-and-func);
 
