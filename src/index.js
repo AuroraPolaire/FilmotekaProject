@@ -13,6 +13,7 @@ import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
 import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
+import './js/theme';
 
 const page = pagination.getCurrentPage();
 
