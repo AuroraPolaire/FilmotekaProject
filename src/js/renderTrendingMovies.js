@@ -23,20 +23,3 @@ function renderTrendingMovies(data) {
     .join('');
 }
 export { renderTrendingMovies };
-
-// export const movieGeneralMarkup = data => {
-//   console.log(data);
-//   return data.movies
-//     .map(({ title, poster_path, release_date, genre_ids }) => {
-//       return `<div>
-//   <a href="">
-//   <img src="https://image.tmdb.org/t/p/w300/${poster_path}" alt=""/>
-//   <h2>${title}</h2>
-//   <
-//   <p>${data.getMovieGenresPreview(genre_ids)}${release_date}</p>
-//   </a>
-// </div>
-// `;
-//     })
-//     .join('');
-// };

@@ -20,30 +20,11 @@ export function runNotification(moviesData) {
     const alertCleaning = setTimeout(() => {
       refs.submitNotification.innerHTML = '';
     }, 6000);
-
-    // Notify.success('We found 1 movie', {
-    //   position: 'center-top',
-    //   borderRadius: '2px',
-    //   success: {
-    //     background: '#ffffff',
-    //     textColor: '#000',
-    //   },
-    // });
   } else {
     refs.submitNotification.innerHTML = `${moviesData.total_results} movies found on your request ${searchQuery}`;
 
     const alertCleaning = setTimeout(() => {
       refs.submitNotification.innerHTML = '';
     }, 6000);
-    // const notificationSentence = `${moviesData.total_results} movies found on your request ${themoviedbApi.searchQuery}`;
-    // refs.movieNotifications.innerHTML = notificationSentence;
-    //   Notify.success(`${moviesData.total_results} movies found`, {
-    //     position: 'center-top',
-    //     borderRadius: '2px',
-    //     success: {
-    //       background: '#ffffff',
-    //       textColor: '#000',
-    //     },
-    //   });
   }
 }

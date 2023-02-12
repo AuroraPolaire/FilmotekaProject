@@ -1,6 +1,17 @@
 <div class="backdrop is-hidden footer__backdrop js-backdrop login-backdrop">
   <div id="login">
-    <form class="form">
+    <form class="form login-form">
+      <button type="button" class="modal__close-buttonLogIn">
+        <svg
+          class="modal__close-icon"
+          width="16"
+          height="16"
+          aria-label="close"
+          lang="en"
+        >
+          <use href="./images/symbol-defs.svg#close-icon"></use>
+        </svg>
+      </button>
       <div class="headerAuth">
         <h1>Please Log in or Sign up</h1>
       </div>
@@ -27,7 +38,18 @@
   </div>
 
   <div id="app">
-    <form class="form">
+    <form class="form app-form">
+      <button type="button" class="modal__close-button">
+        <svg
+          class="modal__close-icon"
+          width="16"
+          height="16"
+          aria-label="close"
+          lang="en"
+        >
+          <use href="./images/symbol-defs.svg#close-icon"></use>
+        </svg>
+      </button>
       <div class="headerAuth">
         <h1>Welcome to Filmoteka</h1>
       </div>

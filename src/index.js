@@ -14,8 +14,7 @@ import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
 import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
-import { checkTheme, changeThemeOnClick } from './js/theme';
-import { onloginModalBtnClick } from './js/onLoginBtnClick';
+import { checkTheme, changeThemeOnClick, checkThemeForLogIn } from './js/theme';
 import { btnLogin, btnSignup, btnLogout } from './js/auth-ui';
 import {
   loginEmailPassword,
@@ -24,9 +23,10 @@ import {
   monitorAuthState,
 } from './js/firebase';
 
-checkTheme();
 const themeSwitchButton = document.getElementById('theme-switch-button');
 themeSwitchButton.addEventListener('click', changeThemeOnClick);
+checkTheme();
+checkThemeForLogIn();
 
 const page = pagination.getCurrentPage();
 
@@ -182,5 +182,10 @@ btnLogin.addEventListener('click', loginEmailPassword);
 btnSignup.addEventListener('click', createAccount);
 btnLogout.addEventListener('click', logout);
 
+const closeSvgButton = document.querySelector('.modal__close-button');
+const closeSvgButtonLogIn = document.querySelector('.modal__close-buttonLogIn');
+
+closeSvgButton.addEventListener('click', closeModal);
+closeSvgButtonLogIn.addEventListener('click', closeModal);
+
 monitorAuthState();
-// refs.loginModalBtn.addEventListener('click', onloginModalBtnClick);

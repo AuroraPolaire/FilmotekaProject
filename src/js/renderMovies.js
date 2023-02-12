@@ -1,4 +1,3 @@
-// import { movieData } from './movieClass';
 import * as url from '../images/No-Image-Placeholder.svg';
 import { movieData } from './movieClass';
 

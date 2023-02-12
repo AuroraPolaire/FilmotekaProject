@@ -31,6 +31,7 @@ import { themoviedbApi } from './themoviedb-service';
 import { renderMovies } from './renderMovies';
 import { movieData } from './movieClass';
 import { onCardClick } from './onCardClick';
+import { checkThemeForLogIn } from './theme';
 
 const firebaseApp = initializeApp({
   apiKey: 'AIzaSyAQNEF1EZQq4hRQq21AEqmnTA4ysock-bY',
@@ -92,7 +93,7 @@ export const monitorAuthState = async () => {
     if (user) {
       // console.log(user);
       loginHeaderBtn.textContent = 'Log out';
-
+      checkThemeForLogIn();
       showApp();
       showLoginState(user);
 
@@ -100,6 +101,7 @@ export const monitorAuthState = async () => {
       // hideLinkError();
     } else {
       loginHeaderBtn.textContent = 'Log in';
+      checkThemeForLogIn();
       showLoginForm();
 
       lblAuthState.innerHTML = `You're not logged in.`;

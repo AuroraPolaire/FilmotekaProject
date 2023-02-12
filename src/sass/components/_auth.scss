@@ -54,25 +54,10 @@
 
 .modal.form-modal.dark-theme {
   background-color: var(--text-footer);
-
-  // @media screen and (max-width: 560px) {
-  //   max-width: 95%;
-  //   padding: 30px 10px 10px 10px;
-  //   position: relative;
-  // }
-
-  // @media screen and (min-width: 560px) {
-  //   width: 500px;
-  // }
-
-  // @media screen and (min-width: 1024px) {
-  //   width: 700px;
-  //   height: 610px;
-  //   padding: 40px 12px;
-  // }
 }
 
 .form {
+  position: relative;
   margin-top: 20px;
   padding: 3em 2em 2em 2em;
   background: #fafafa;
@@ -80,6 +65,35 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.form .modal__close-button {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+}
+
+.modal__close-buttonLogIn {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  cursor: pointer;
+  border: solid 2px #ff6b01;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: var(--transition-dur-and-func);
+
+  &:hover,
+  &:focus {
+    fill: var(--accent);
+    transform: rotate(360deg);
+  }
 }
 
 .form.dark-theme {

@@ -45,3 +45,16 @@ export const showLoginState = user => {
 };
 
 hideLoginError();
+
+const backdrop = document.querySelector('.login-backdrop');
+const loginHeaderBtn = document.querySelector('.login-modal-btn');
+
+export function closeModalLogIn() {
+  backdrop.classList.add('is-hidden');
+  document.removeEventListener('keydown', onClickEscape);
+}
+
+export function closeModal() {
+  backdrop.classList.add('is-hidden');
+  document.removeEventListener('keydown', onClickEscape);
+}

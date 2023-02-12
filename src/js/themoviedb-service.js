@@ -10,13 +10,12 @@ class ThemoviedbApi {
     this.searchQuery = '';
     // this.page = 1;
   }
-  // https://api.themoviedb.org/3/search/movie?api_key=2b316c342fe13f9049052886494c29f1&page=1&query=avatar
 
   async searchMovies(page) {
     const { data } = await Axios.get(
       `${ThemoviedbApi.URL}3/search/movie?api_key=${ThemoviedbApi.API_KEY}&query=${this.searchQuery}&page=${page}`
     );
-    console.log(data);
+
     return data;
   }
 

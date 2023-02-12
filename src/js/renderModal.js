@@ -1,7 +1,6 @@
 import * as url from '../images/No-Image-Placeholder.svg';
 import * as svg from '../images/symbol-defs.svg';
 import { movieData } from './movieClass';
-// import { themoviedbApi } from '../js/themoviedb-service';
 
 function createModalInfo({
   title,
@@ -17,7 +16,6 @@ function createModalInfo({
   genres,
 }) {
   const theme = localStorage.getItem('theme');
-  console.log(theme);
 
   const genresString = genres
     ? genres.map(el => el.name).join(', ')

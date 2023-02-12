@@ -120,9 +120,6 @@ const onCardClick = async e => {
     queueBtn.textContent = 'ADD TO QUEUE';
     queueBtn.addEventListener('click', onAddToQueueBtnClick);
   };
-
-  // addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
-  // addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
 };
 
 // <<<<<<<<OTHER MODAL HANDLERS>>>>>>>>>>>>>>>

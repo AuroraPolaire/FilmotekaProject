@@ -10,6 +10,8 @@ import { checkTheme, changeThemeOnClick } from './js/theme';
 const themeSwitchButton = document.getElementById('theme-switch-button');
 themeSwitchButton.addEventListener('click', changeThemeOnClick);
 
+checkTheme();
+
 import { btnLogin, btnSignup, btnLogout } from './js/auth-ui';
 
 import {
@@ -42,9 +44,13 @@ monitorAuthState().then(() => {
 
 const backdrop = document.querySelector('.login-backdrop');
 const loginHeaderBtn = document.querySelector('.login-modal-btn');
+const closeSvgButton = document.querySelector('.modal__close-button');
+const closeSvgButtonLogIn = document.querySelector('.modal__close-buttonLogIn');
 
 loginHeaderBtn.addEventListener('click', onLoginClick);
 backdrop.addEventListener('click', onBackdropClick);
+closeSvgButton.addEventListener('click', closeModal);
+closeSvgButtonLogIn.addEventListener('click', closeModalLogIn);
 
 function onLoginClick(e) {
   e.preventDefault();
@@ -52,12 +58,18 @@ function onLoginClick(e) {
   document.addEventListener('keydown', onClickEscape);
 }
 
-function onClickEscape(event) {
+export function onClickEscape(event) {
   if (event.key === 'Escape') {
     backdrop.classList.add('is-hidden');
     // refs.addBodyClass.classList.remove('modal-open');
     document.removeEventListener('keydown', onClickEscape);
   }
+}
+
+export function closeModalLogIn() {
+  backdrop.classList.add('is-hidden');
+  // refs.addBodyClass.classList.remove('modal-open');
+  document.removeEventListener('keydown', onClickEscape);
 }
 
 function closeModal() {
@@ -71,5 +83,3 @@ function onBackdropClick(event) {
     closeModal();
   }
 }
-
-checkTheme();
