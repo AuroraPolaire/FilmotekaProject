@@ -5,6 +5,7 @@ import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome.min';
 import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
+import { checkTheme, changeThemeOnClick } from './js/theme';
 import { themoviedbApi } from './js/themoviedb-service';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
@@ -131,6 +132,9 @@ btnSignup.addEventListener('click', createAccount);
 btnLogout.addEventListener('click', () => signOut(auth));
 
 monitorAuthState();
+checkTheme();
+const themeSwitchButton = document.getElementById('theme-switch-button');
+themeSwitchButton.addEventListener('click', changeThemeOnClick);
 
 const watchedListFromDb = async () => {
   let arr = [];
