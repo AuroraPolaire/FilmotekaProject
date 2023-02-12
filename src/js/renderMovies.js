@@ -16,10 +16,15 @@ export function renderMovies(data) {
         vote_average,
         popularity,
         id,
+        genres,
       }) => {
+        const genreData = genres
+          ? genres.map(el => el.name).join(', ')
+          : movieData.getMovieGenresPreview(genre_ids ? genre_ids : [gender]);
+
         const genreCode = `
            <div class="movie-card__genre genre card-info">
-            ${movieData.getMovieGenresPreview(genre_ids ? genre_ids : [gender])}
+            ${genreData}
           </div>`;
         const noGenreCode = ``;
         const ratingPresent = `
@@ -45,6 +50,7 @@ export function renderMovies(data) {
 				<div class="movie-card__wrp">
 				<div class="movie-card__genre-wrp">
 				${genre_ids.length > 0 ? genreCode : noGenreCode}
+				${genre_ids || genres ? genreCode : noGenreCode}
 				</div>
 				<div class="movie-card__year card-info">${
           release_date

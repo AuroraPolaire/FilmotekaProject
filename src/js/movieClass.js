@@ -1,6 +1,6 @@
 class MovieData {
   #movies = [];
-  #genres = null;
+  #genres = new Map();
 
   getMovieGenresPreview(genreIdList) {
     const genresArray = genreIdList.map(id => this.#genres.get(id));

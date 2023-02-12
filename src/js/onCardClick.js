@@ -2,8 +2,7 @@ import { themoviedbApi } from '../js/themoviedb-service';
 import { movieData } from './movieClass';
 import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
-import { addFilmToWatched, addFilmToQueue } from '../index';
-import { movieData } from './movieClass';
+import { addFilmToWatched, addFilmToQueue } from './buttons';
 import { findTrailer } from './findTrailer';
 
 const closeModal = (e, modal) => {

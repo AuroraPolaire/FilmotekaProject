@@ -14,8 +14,11 @@ function createModalInfo({
   genre_ids,
   name,
   original_name,
+  genres,
 }) {
-  const genresString = movieData.getMovieGenres(genre_ids);
+  const genresString = genres
+    ? genres.map(el => el.name).join(', ')
+    : movieData.getMovieGenres(genre_ids);
   return `
   <div class="modal-box">
     <div class="modal">
