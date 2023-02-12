@@ -6,6 +6,8 @@ import {
   showLoginError,
 } from './auth-ui';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { initializeApp } from 'firebase/app';
 
 import {

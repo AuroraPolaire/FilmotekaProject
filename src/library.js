@@ -33,5 +33,12 @@ const queueBtn = document.querySelector('.library__queue-btn');
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
 
-monitorAuthState();
+console.log(monitorAuthState());
+
+monitorAuthState().then(() => {
+  setTimeout(() => {
+    onWatchedBtnClick();
+  }, 500);
+});
+
 checkTheme();
