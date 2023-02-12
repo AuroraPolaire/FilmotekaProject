@@ -2,9 +2,10 @@ import * as svg from '../images/symbol-defs.svg';
 
 export function createLoginMarkup() {
   const theme = localStorage.getItem('theme');
+  console.log(theme);
   return `
   <div class="modal-box ">
-    <div class="modal ${theme === 'dark' ? 'dark-theme' : 'light'} form-modal">
+    <div class="modal ${theme == 'dark' ? 'dark-theme' : 'light'} form-modal">
       <button data-modal-close type="button" class="modal__close-button">
         <svg
             class="modal__close-icon"
@@ -21,19 +22,25 @@ export function createLoginMarkup() {
   <div class="headerAuth">
     <h1>Please Log in or Sign up</h1>
   </div>
-  <form class="form">
+  <form class="form ${theme == 'dark' ? 'dark-theme' : 'light'}">
     <div class="group">
-      <input id="txtEmail" type="email" class="input" placeholder=" " />
+      <input id="txtEmail" type="email" class="input ${
+        theme == 'dark' ? 'dark-theme' : 'light'
+      }" placeholder=" " />
       <label class="label">Email</label>
       <div class="line"></div>
     </div>
     <div class="group">
-      <input id="txtPassword" type="password" class="input" placeholder=" " />
+      <input id="txtPassword" type="password" class="input ${
+        theme == 'dark' ? 'dark-theme' : 'light'
+      }" placeholder=" " />
       <label class="label">Password</label>
       <div class="line"></div>
     </div>
     <div id="divLoginError" class="group">
-      <div id="lblLoginErrorMessage" class="errorlabel">Error message</div>
+      <div id="lblLoginErrorMessage" class="errorlabel ${
+        theme == 'dark' ? 'dark-theme' : 'light'
+      }">Error message</div>
     </div>
     <button id="btnLogin" type="button" class="buttonFire buttonBlue">
       Log in
