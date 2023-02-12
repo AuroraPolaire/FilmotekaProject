@@ -96,21 +96,29 @@ const onCardClick = async e => {
   const onAddToWatchedBtnClick = () => {
     addFilmToWatched(id, title);
     watchedBtn.removeEventListener('click', onAddToWatchedBtnClick);
+    watchedBtn.textContent = 'REMOVE WATCHED';
+    watchedBtn.addEventListener('click', onRemoveFromWatchedBtnClick);
   };
 
   const onAddToQueueBtnClick = () => {
     addFilmToQueue(id, title);
     queueBtn.removeEventListener('click', onAddToQueueBtnClick);
+    queueBtn.textContent = 'REMOVE QUEUE';
+    queueBtn.addEventListener('click', onRemoveFromQueueBtnClick);
   };
 
   const onRemoveFromWatchedBtnClick = () => {
     removeFilmFromWatched(id, title);
     watchedBtn.removeEventListener('click', onRemoveFromWatchedBtnClick);
+    watchedBtn.textContent = 'ADD TO WATCHED';
+    watchedBtn.addEventListener('click', onAddToWatchedBtnClick);
   };
 
   const onRemoveFromQueueBtnClick = () => {
     removeFilmFromQueue(id, title);
     queueBtn.removeEventListener('click', onRemoveFromQueueBtnClick);
+    queueBtn.textContent = 'ADD TO QUEUE';
+    queueBtn.addEventListener('click', onAddToQueueBtnClick);
   };
 
   // addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
