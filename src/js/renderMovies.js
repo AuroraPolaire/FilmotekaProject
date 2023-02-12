@@ -10,7 +10,6 @@ export function renderMovies(data) {
         poster_path,
         release_date,
         genre_ids,
-        gender,
         name,
         first_air_date,
         vote_average,
@@ -19,9 +18,8 @@ export function renderMovies(data) {
         genres,
       }) => {
         const genreData = genres
-          ? genres.map(el => el.name).join(', ')
-          : movieData.getMovieGenresPreview(genre_ids ? genre_ids : [gender]);
-
+          ? movieData.createGenreString(genres.map(el => el.name))
+          : movieData.getMovieGenresPreview(genre_ids);
         const genreCode = `
            <div class="movie-card__genre genre card-info">
             ${genreData}
@@ -49,7 +47,7 @@ export function renderMovies(data) {
 				${title ? title.toUpperCase() : name.toUpperCase()} </p>
 				<div class="movie-card__wrp">
 				<div class="movie-card__genre-wrp">
-				${genre_ids || genres ? genreCode : noGenreCode}
+				${genreData.length ? genreCode : noGenreCode}
 				</div>
 				<div class="movie-card__year card-info">${
           release_date

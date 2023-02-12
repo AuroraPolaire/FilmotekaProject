@@ -6,7 +6,18 @@ class MovieData {
     const genresArray = genreIdList.map(id => this.#genres.get(id));
 
     if (genresArray.length <= 1) {
-      return genresArray;
+      return genresArray.toString();
+    }
+
+    if (genresArray.length === 2) {
+      return genresArray.join(', ');
+    }
+    return [...genresArray.slice(0, 2), 'other'].join(', ');
+  }
+
+  createGenreString(genresArray) {
+    if (genresArray.length <= 1) {
+      return genresArray.toString();
     }
 
     if (genresArray.length === 2) {
