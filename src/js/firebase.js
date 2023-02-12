@@ -84,18 +84,24 @@ export const createAccount = async () => {
   }
 };
 
+const loginHeaderBtn = document.querySelector('.login-modal-btn');
+
 // / Monitor auth state
 export const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       // console.log(user);
+      loginHeaderBtn.textContent = 'Log out';
+
       showApp();
       showLoginState(user);
 
       hideLoginError();
       // hideLinkError();
     } else {
+      loginHeaderBtn.textContent = 'Log in';
       showLoginForm();
+
       lblAuthState.innerHTML = `You're not logged in.`;
     }
   });
