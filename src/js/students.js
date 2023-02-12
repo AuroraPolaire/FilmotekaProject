@@ -13,7 +13,7 @@ export const students = [
   },
   {
     id: '2',
-    name: 'Кулакова Аліса',
+    name: 'Аліса Кулакова',
     role: 'Scrum-master / Developer',
     img: 'https://avatars.githubusercontent.com/u/110929937?v=4',
     githubLink: 'https://github.com/AliceChpmnk',
@@ -74,7 +74,7 @@ export const students = [
   },
   {
     id: '8',
-    name: 'Ключенко Паша',
+    name: 'Паша Ключенко',
     role: 'Developer',
     img: 'https://avatars.githubusercontent.com/u/88260408?v=4',
     githubLink: 'https://github.com/Kliuchenko',
@@ -92,5 +92,25 @@ export const students = [
     facebookLink: 'https://www.facebook.com/radkovskaya.olga',
     linkedinLink: 'https://www.linkedin.com/in/olga-radkovskaya-a31543210/',
     description: 'Отримала зарядку для мозку, про яку мріяла :)',
+  },
+  {
+    id: '10',
+    name: 'Віталій Павлюк',
+    role: 'Developer',
+    img: 'https://avatars.githubusercontent.com/u/113640099?v=4',
+    githubLink: 'https://github.com/VitaliiPavliuk',
+    facebookLink: 'https://www.facebook.com/vitalii.m.pavliuk',
+    linkedinLink: 'https://www.linkedin.com/in/pavliuk-vitalii',
+    description: 'Firebase is awesome! :)',
+  },
+  {
+    id: '11',
+    name: 'Дмитро Сакалюк',
+    role: 'Developer',
+    img: 'https://avatars.githubusercontent.com/u/78900270?v=4',
+    githubLink: 'https://github.com/owin66',
+    facebookLink: 'https://www.facebook.com/profile.php?id=100005161834760',
+    linkedinLink: 'https://www.linkedin.com/in/dmitriy-sakaluk/',
+    description: 'Lorem ipsum ipsum lorem!',
   },
 ];
