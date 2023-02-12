@@ -32,6 +32,7 @@
   padding: 3em 2em 2em 2em;
   background: #fafafa;
   border: 1px solid #ebebeb;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px,
     rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 }
@@ -51,11 +52,14 @@
   width: 100%;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid #757575;
-}
-
-.input:focus {
+  // border-bottom: 1px solid #757575;
   outline: none;
+
+  &:focus~.line {
+      &:after {
+        transform: scaleX(1);
+      }
+    }
 }
 
 /* Label */
@@ -89,12 +93,13 @@
 /* active */
 
 .input:focus ~ .label,
-.input.used ~ .label {
+.input.used ~ .label,
+.input:not(:placeholder-shown)~.label {
   top: -20px;
   transform: scale(0.75);
   left: -2px;
   /* font-size: 14px; */
-  color: #4a89dc;
+  color: var(--accent);
 }
 
 /* Underline */
@@ -178,7 +183,7 @@
   letter-spacing: 1px;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid #3160b6;
+  border-bottom: 2px solid #333;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -189,13 +194,59 @@
 /* Button modifiers */
 
 .buttonBlue {
-  background: #4a89dc;
-  text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
+  // background: #4a89dc;
+  // text-shadow: 1px 1px 0 rgba(39, 110, 204, 0.5);
+        background-color: #333;
+        border-radius: 10px;
+        transition: all .4s;
+        position: relative;
+        z-index: 1;
 }
 
-.buttonBlue:hover {
-  background: #357bd8;
+.buttonBlue::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  background: #a64bf4;
+  background: linear-gradient(45deg, #FF5F6D, #FFC371);
+  opacity: 0;
+  transition: all .4s;
 }
+
+.buttonBlue:hover:before {
+  opacity: 1;
+}
+
+.line {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: -5px;
+    background: #bdc3c7;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      float: right;
+      width: 100%;
+      height: 3px;
+      
+      transform: scalex(0);
+      transition: transform 0.3s ease;
+      
+      background: var(--accent);
+    }
+  }
+
+// .buttonBlue:hover {
+//   background: #357bd8;
+// }
 
 /* Ripples container */
 

@@ -20,7 +20,6 @@ export function renderMovies(data) {
         const genreData = genres
           ? movieData.createGenreString(genres.map(el => el.name))
           : movieData.getMovieGenresPreview(genre_ids);
-
         const genreCode = `
            <div class="movie-card__genre genre card-info">
             ${genreData}

@@ -1,0 +1,56 @@
+body {
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.dark-theme {
+  background-color: var(--text-footer);
+}
+
+.navigation {
+  position: relative;
+}
+
+#theme-switch-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-6px, 45px);
+
+  @media screen and (min-width: 768px) {
+    transform: translate(-9px, 50px);
+  }
+
+  @media screen and (min-width: 1280px) {
+    transform: translate(180px, 4px);
+  }
+}
+
+.theme-icon {
+  background-color: transparent;
+
+  @media screen and (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+#sun {
+  transform: rotate(0);
+  fill: var(--accent);
+  transition: transform 0.5s ease-in-out;
+}
+
+.dark-theme #sun {
+  transform: rotate(180deg);
+}
+
+#moon {
+  transform: rotate(-180deg);
+  fill: var(--background-main);
+  transition: transform 0.5s ease-in-out;
+}
+
+.dark-theme #moon {
+  transform: rotate(0);
+}

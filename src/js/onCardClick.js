@@ -2,8 +2,14 @@ import { themoviedbApi } from '../js/themoviedb-service';
 import { movieData } from './movieClass';
 import { createModalInfo } from '../js/renderModal';
 import * as basicLightbox from 'basiclightbox';
-import { addFilmToWatched, addFilmToQueue } from '../index';
-import { movieData } from './movieClass';
+import {
+  addFilmToWatched,
+  addFilmToQueue,
+  lookingMovieInWatched,
+  lookingMovieInQueue,
+  removeFilmFromWatched,
+  removeFilmFromQueue,
+} from './buttons';
 import { findTrailer } from './findTrailer';
 
 const closeModal = (e, modal) => {
@@ -24,9 +30,11 @@ const onCardClick = async e => {
   let title;
 
   try {
-    const trailerArr = await themoviedbApi.getMovieTrailer(targetMovie.id).catch(err => {
-      console.log(err);
-    });
+    const trailerArr = await themoviedbApi
+      .getMovieTrailer(targetMovie.id)
+      .catch(err => {
+        console.log(err);
+      });
     const trailer = findTrailer(trailerArr.results);
 
     const modal = basicLightbox.create(createModalInfo(targetMovie), {
@@ -46,7 +54,9 @@ const onCardClick = async e => {
     });
     modal.show();
 
+    const trailerBtn = document.querySelector('.modal__btn-trailer');
     if (trailer) {
+      trailerBtn.classList.remove('visually-hidden');
       showTrailer(trailer);
     }
 
@@ -60,24 +70,51 @@ const onCardClick = async e => {
   }
 
   // <<<<<<<<BUTTONS HANDLERS>>>>>>>>>>>>>
-  const addToWatchedBtn = document.querySelector('.modal__btn--watched');
-  const addToQueueBtn = document.querySelector('.modal__btn--queue');
+  const watchedBtn = document.querySelector('.modal__btn--watched');
+  const queueBtn = document.querySelector('.modal__btn--queue');
 
-  console.log(id);
-  console.log(title);
+  lookingMovieInWatched(id).then(data => {
+    if (data.length === 0) {
+      watchedBtn.textContent = 'ADD TO WATCHED';
+      watchedBtn.addEventListener('click', onAddToWatchedBtnClick);
+    } else {
+      watchedBtn.textContent = 'REMOVE WATCHED';
+      watchedBtn.addEventListener('click', onRemoveFromWatchedBtnClick);
+    }
+  });
+
+  lookingMovieInQueue(id).then(data => {
+    if (data.length === 0) {
+      queueBtn.textContent = 'ADD TO QUEUE';
+      queueBtn.addEventListener('click', onAddToQueueBtnClick);
+    } else {
+      queueBtn.textContent = 'REMOVE QUEUE';
+      queueBtn.addEventListener('click', onRemoveFromQueueBtnClick);
+    }
+  });
 
   const onAddToWatchedBtnClick = () => {
     addFilmToWatched(id, title);
-    addToWatchedBtn.removeEventListener('click', onAddToWatchedBtnClick);
+    watchedBtn.removeEventListener('click', onAddToWatchedBtnClick);
   };
 
   const onAddToQueueBtnClick = () => {
     addFilmToQueue(id, title);
-    addToQueueBtn.removeEventListener('click', onAddToQueueBtnClick);
+    queueBtn.removeEventListener('click', onAddToQueueBtnClick);
   };
 
-  addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
-  addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
+  const onRemoveFromWatchedBtnClick = () => {
+    removeFilmFromWatched(id, title);
+    watchedBtn.removeEventListener('click', onRemoveFromWatchedBtnClick);
+  };
+
+  const onRemoveFromQueueBtnClick = () => {
+    removeFilmFromQueue(id, title);
+    queueBtn.removeEventListener('click', onRemoveFromQueueBtnClick);
+  };
+
+  // addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
+  // addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
 };
 
 // <<<<<<<<OTHER MODAL HANDLERS>>>>>>>>>>>>>>>
@@ -87,11 +124,10 @@ function toggleModalOpen() {
 
 function showTrailer(trailer) {
   const mediaContainer = document.querySelector('.modal__media-container');
-
   mediaContainer.addEventListener('click', e => {
     mediaContainer.innerHTML = `<iframe class="modal__trailer" width="420" height="315"
-		src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
-		</iframe>`;
+  	src="https://www.youtube.com/embed/${trailer}"> frameborder="0" allowfullscreen
+  	</iframe>`;
   });
 }
 
