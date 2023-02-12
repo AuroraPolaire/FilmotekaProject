@@ -263,11 +263,23 @@
 }
 
 .error-notification {
-  padding-top: 20px;
+  padding-top: 8px;
   color: #ff001b;
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 20px;
+    font-size: 16px;
+  }
 }
 
 .submit-notification {
-  padding-top: 5px;
+  padding-top: 8px;
   color: #fff;
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 5px;
+    font-size: 16px;
+  }
 }
