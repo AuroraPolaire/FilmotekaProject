@@ -33,12 +33,43 @@ const queueBtn = document.querySelector('.library__queue-btn');
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
 
-console.log(monitorAuthState());
-
 monitorAuthState().then(() => {
   setTimeout(() => {
+    // loginHeaderBtn.textContent = 'Log out';
     onWatchedBtnClick();
-  }, 500);
+  }, 1000);
 });
+
+const backdrop = document.querySelector('.login-backdrop');
+const loginHeaderBtn = document.querySelector('.login-modal-btn');
+
+loginHeaderBtn.addEventListener('click', onLoginClick);
+backdrop.addEventListener('click', onBackdropClick);
+
+function onLoginClick(e) {
+  e.preventDefault();
+  backdrop.classList.remove('is-hidden');
+  document.addEventListener('keydown', onClickEscape);
+}
+
+function onClickEscape(event) {
+  if (event.key === 'Escape') {
+    backdrop.classList.add('is-hidden');
+    // refs.addBodyClass.classList.remove('modal-open');
+    document.removeEventListener('keydown', onClickEscape);
+  }
+}
+
+function closeModal() {
+  backdrop.classList.add('is-hidden');
+  // refs.addBodyClass.classList.remove('modal-open');
+  document.removeEventListener('keydown', onClickEscape);
+}
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    closeModal();
+  }
+}
 
 checkTheme();

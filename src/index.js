@@ -146,9 +146,41 @@ refs.searchForm.addEventListener('submit', onSubmitSearchMoviesForm);
 
 refs.movieContainer.addEventListener('click', onCardClick);
 
+const backdrop = document.querySelector('.login-backdrop');
+const loginHeaderBtn = document.querySelector('.login-modal-btn');
+
+loginHeaderBtn.addEventListener('click', onLoginClick);
+backdrop.addEventListener('click', onBackdropClick);
+
+function onLoginClick(e) {
+  e.preventDefault();
+  backdrop.classList.remove('is-hidden');
+  document.addEventListener('keydown', onClickEscape);
+}
+
+function onClickEscape(event) {
+  if (event.key === 'Escape') {
+    backdrop.classList.add('is-hidden');
+    // refs.addBodyClass.classList.remove('modal-open');
+    document.removeEventListener('keydown', onClickEscape);
+  }
+}
+
+function closeModal() {
+  backdrop.classList.add('is-hidden');
+  // refs.addBodyClass.classList.remove('modal-open');
+  document.removeEventListener('keydown', onClickEscape);
+}
+
+function onBackdropClick(event) {
+  if (event.currentTarget === event.target) {
+    closeModal();
+  }
+}
+
 btnLogin.addEventListener('click', loginEmailPassword);
 btnSignup.addEventListener('click', createAccount);
 btnLogout.addEventListener('click', logout);
 
 monitorAuthState();
-refs.loginModalBtn.addEventListener('click', onloginModalBtnClick);
+// refs.loginModalBtn.addEventListener('click', onloginModalBtnClick);

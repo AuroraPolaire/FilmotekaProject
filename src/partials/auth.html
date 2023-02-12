@@ -1,40 +1,42 @@
-<div id="login">
-  <div class="headerAuth">
-    <h1>Please Log in or Sign up</h1>
+<div class="backdrop is-hidden footer__backdrop js-backdrop login-backdrop">
+  <div id="login">
+    <form class="form">
+      <div class="headerAuth">
+        <h1>Please Log in or Sign up</h1>
+      </div>
+      <div class="group">
+        <input id="txtEmail" type="email" class="input" placeholder=" " />
+        <label class="label">Email</label>
+        <div class="line"></div>
+      </div>
+      <div class="group">
+        <input id="txtPassword" type="password" class="input" placeholder=" " />
+        <label class="label">Password</label>
+        <div class="line"></div>
+      </div>
+      <div id="divLoginError" class="group">
+        <div id="lblLoginErrorMessage" class="errorlabel">Error message</div>
+      </div>
+      <button id="btnLogin" type="button" class="buttonFire buttonBlue">
+        Log in
+      </button>
+      <button id="btnSignup" type="button" class="buttonFire buttonBlue">
+        Sign up
+      </button>
+    </form>
   </div>
-  <form class="form">
-    <div class="group">
-      <input id="txtEmail" type="email" class="input" placeholder=" " />
-      <label class="label">Email</label>
-      <div class="line"></div>
-    </div>
-    <div class="group">
-      <input id="txtPassword" type="password" class="input" placeholder=" " />
-      <label class="label">Password</label>
-      <div class="line"></div>
-    </div>
-    <div id="divLoginError" class="group">
-      <div id="lblLoginErrorMessage" class="errorlabel">Error message</div>
-    </div>
-    <button id="btnLogin" type="button" class="buttonFire buttonBlue">
-      Log in
-    </button>
-    <button id="btnSignup" type="button" class="buttonFire buttonBlue">
-      Sign up
-    </button>
-  </form>
-</div>
 
-<div id="app">
-  <div class="headerAuth">
-    <h1>Welcome to Filmoteka</h1>
+  <div id="app">
+    <form class="form">
+      <div class="headerAuth">
+        <h1>Welcome to Filmoteka</h1>
+      </div>
+      <div class="group">
+        <div id="lblAuthState" class="authlabel"></div>
+      </div>
+      <button id="btnLogout" type="button" class="buttonFire buttonBlue">
+        Log out
+      </button>
+    </form>
   </div>
-  <form class="form">
-    <div class="group">
-      <div id="lblAuthState" class="authlabel"></div>
-    </div>
-    <button id="btnLogout" type="button" class="buttonFire buttonBlue">
-      Log out
-    </button>
-  </form>
 </div>
