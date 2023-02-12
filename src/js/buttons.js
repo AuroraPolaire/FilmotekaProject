@@ -1,5 +1,7 @@
 import { showLoginForm } from './auth-ui';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
@@ -41,9 +43,7 @@ export const addFilmToWatched = async (filmID, filmTitle) => {
           await setDoc(docRef, {
             title: filmTitle,
           });
-          console.log(
-            `Film "${filmTitle}" with id "${filmID}" has been added to the WATCHED`
-          );
+          Notify.success(`Movie "${filmTitle}" has been added to the WATCHED`);
         } catch {
           console.log(`I got an error! ${error}`);
         }
@@ -53,7 +53,7 @@ export const addFilmToWatched = async (filmID, filmTitle) => {
     } else {
       showLoginForm();
       lblAuthState.innerHTML = `You're not logged in.`;
-      console.log(`You're not logged in.`);
+      Notify.failure(`You're not logged in.`);
     }
   });
 };
@@ -70,9 +70,7 @@ export const addFilmToQueue = async (filmID, filmTitle) => {
           await setDoc(docRef, {
             title: filmTitle,
           });
-          console.log(
-            `Film "${filmTitle}" with id "${filmID}" has been added to the QUEUE`
-          );
+          Notify.success(`Movie "${filmTitle}" has been added to the QUEUE`);
         } catch {
           console.log(`I got an error! ${error}`);
         }
@@ -82,7 +80,7 @@ export const addFilmToQueue = async (filmID, filmTitle) => {
     } else {
       showLoginForm();
       lblAuthState.innerHTML = `You're not logged in.`;
-      console.log(`You're not logged in.`);
+      Notify.failure(`You're not logged in.`);
     }
   });
 };
@@ -105,8 +103,6 @@ export const lookingMovieInWatched = async id => {
     } catch {
       console.log(`I got an error! ${error}`);
     }
-  } else {
-    console.log(`You're not logged in.`);
   }
   return arr;
 };
@@ -129,8 +125,6 @@ export const lookingMovieInQueue = async id => {
     } catch {
       console.log(`I got an error! ${error}`);
     }
-  } else {
-    console.log(`You're not logged in.`);
   }
   return arr;
 };
@@ -142,9 +136,7 @@ export const removeFilmFromWatched = async (filmID, filmTitle) => {
 
     try {
       await deleteDoc(docRef);
-      console.log(
-        `Film "${filmTitle}" with id "${filmID}" has been DELETED from WATCHED`
-      );
+      Notify.info(`Movie "${filmTitle}" has been removed from WATCHED`);
     } catch {
       console.log(`I got an error! ${error}`);
     }
@@ -160,9 +152,7 @@ export const removeFilmFromQueue = async (filmID, filmTitle) => {
 
     try {
       await deleteDoc(docRef);
-      console.log(
-        `Film "${filmTitle}" with id "${filmID}" has been DELETED from QUEUE`
-      );
+      Notify.info(`Movie "${filmTitle}" has been removed from QUEUE`);
     } catch {
       console.log(`I got an error! ${error}`);
     }

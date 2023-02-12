@@ -6,6 +6,8 @@ import {
   showLoginError,
 } from './auth-ui';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { initializeApp } from 'firebase/app';
 
 import {
@@ -136,14 +138,14 @@ const watchedListFromDb = async () => {
     };
     return getMovies();
   } else {
-    console.log(`You're not logged in.`);
+    Notify.failure(`You're not logged in.`);
   }
 };
 
 const queueListFromDb = async () => {
   const user = auth.currentUser;
   if (!user) {
-    console.error(`You're not logged in.`);
+    Notify.failure(`You're not logged in.`);
     return;
   }
 
