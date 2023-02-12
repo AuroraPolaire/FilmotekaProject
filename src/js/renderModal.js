@@ -16,12 +16,15 @@ function createModalInfo({
   original_name,
   genres,
 }) {
+  const theme = localStorage.getItem('theme');
+  console.log(theme);
+
   const genresString = genres
     ? genres.map(el => el.name).join(', ')
     : movieData.getMovieGenres(genre_ids);
   return `
-  <div class="modal-box">
-    <div class="modal">
+  <div class="modal-box ">
+    <div class="modal ${theme === 'dark' ? 'dark-theme' : 'light'}">
       <button data-modal-close type="button" class="modal__close-button">
         <svg
             class="modal__close-icon"
