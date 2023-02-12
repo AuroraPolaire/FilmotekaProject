@@ -49,6 +49,7 @@ export function renderMovies(data) {
 				${title ? title.toUpperCase() : name.toUpperCase()} </p>
 				<div class="movie-card__wrp">
 				<div class="movie-card__genre-wrp">
+				${genre_ids.length > 0 ? genreCode : noGenreCode}
 				${genre_ids || genres ? genreCode : noGenreCode}
 				</div>
 				<div class="movie-card__year card-info">${
