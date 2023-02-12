@@ -18,7 +18,8 @@ class MovieData {
     return this.formatGenresString(genresArray);
   }
 
-  createGenreString(genresArray) {
+  createGenreString(genres) {
+    const genresArray = genres.map(el => el.name);
     return this.formatGenresString(genresArray);
   }
 

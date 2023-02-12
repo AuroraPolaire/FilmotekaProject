@@ -15,8 +15,8 @@ import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
 import { checkTheme, changeThemeOnClick } from './js/theme';
+import { onloginModalBtnClick } from './js/onLoginBtnClick';
 import { btnLogin, btnSignup, btnLogout } from './js/auth-ui';
-
 import {
   loginEmailPassword,
   logout,
@@ -151,3 +151,4 @@ btnSignup.addEventListener('click', createAccount);
 btnLogout.addEventListener('click', logout);
 
 monitorAuthState();
+refs.loginModalBtn.addEventListener('click', onloginModalBtnClick);

@@ -131,4 +131,4 @@ function showTrailer(trailer) {
   });
 }
 
-export { onCardClick };
+export { onCardClick, closeModal, toggleModalOpen };
