@@ -2,28 +2,24 @@ class MovieData {
   #movies = [];
   #genres = new Map();
 
+  formatGenresString(data) {
+    if (data.length <= 1) {
+      return data.toString();
+    }
+
+    if (data.length === 2) {
+      return data.join(', ');
+    }
+    return [...data.slice(0, 2), 'other'].join(', ');
+  }
+
   getMovieGenresPreview(genreIdList) {
     const genresArray = genreIdList.map(id => this.#genres.get(id));
-
-    if (genresArray.length <= 1) {
-      return genresArray.toString();
-    }
-
-    if (genresArray.length === 2) {
-      return genresArray.join(', ');
-    }
-    return [...genresArray.slice(0, 2), 'other'].join(', ');
+    return this.formatGenresString(genresArray);
   }
 
   createGenreString(genresArray) {
-    if (genresArray.length <= 1) {
-      return genresArray.toString();
-    }
-
-    if (genresArray.length === 2) {
-      return genresArray.join(', ');
-    }
-    return [...genresArray.slice(0, 2), 'other'].join(', ');
+    return this.formatGenresString(genresArray);
   }
 
   getMovieGenres(genreIdList) {
