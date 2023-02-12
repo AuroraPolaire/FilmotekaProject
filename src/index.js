@@ -15,6 +15,7 @@ import './js/sliderGlide';
 import './js/teamModal';
 import './js/renderTeamModal';
 import { checkTheme, changeThemeOnClick } from './js/theme';
+import { onloginModalBtnClick } from './js/onLoginBtnClick';
 
 checkTheme();
 const themeSwitchButton = document.getElementById('theme-switch-button');
@@ -299,3 +300,4 @@ btnSignup.addEventListener('click', createAccount);
 btnLogout.addEventListener('click', logout);
 
 monitorAuthState();
+refs.loginModalBtn.addEventListener('click', onloginModalBtnClick);

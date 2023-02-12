@@ -6,4 +6,5 @@ export const refs = {
   errorNotification: document.querySelector('.error-notification'),
   submitNotification: document.querySelector('.submit-notification'),
   paginationBlock: document.querySelector('#pagination'),
+  loginModalBtn: document.querySelector('.login-modal-button'),
 };
