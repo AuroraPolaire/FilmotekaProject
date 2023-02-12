@@ -50,3 +50,13 @@
   margin-left: 3px;
   margin-right: 3px;
 }
+
+body.dark-theme {
+  .page-footer {
+    background-color: #333;
+    color: #f7f7f7;
+  }
+  .developers__link {
+    color: #f7f7f7;
+  }
+}
