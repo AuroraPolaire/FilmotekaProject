@@ -115,8 +115,10 @@ const onSubmitSearchMoviesForm = async e => {
 
       renderMovieMarkup(movieData);
       refs.paginationBlock.classList.remove('is-hidden');
+      runNotification(data);
     });
   } catch (error) {
+    refs.paginationBlock.classList.add('is-hidden');
     console.log(error);
   }
 };
