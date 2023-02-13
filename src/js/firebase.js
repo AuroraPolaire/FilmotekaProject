@@ -113,7 +113,7 @@ export const monitorAuthState = async () => {
 export const logout = async () => {
   await signOut(auth);
   refs.movieContainer.innerHTML = '';
-  window.location.href = '/index.html';
+  window.location.href = '/';
 };
 
 const libraryList = document.querySelector('.trending-movies__list');
