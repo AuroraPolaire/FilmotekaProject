@@ -1,4 +1,5 @@
 import { showLoginForm } from './auth-ui';
+import { onWatchedBtnClick, onQueueBtnClick } from './firebase';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -137,6 +138,7 @@ export const removeFilmFromWatched = async (filmID, filmTitle) => {
     try {
       await deleteDoc(docRef);
       Notify.info(`Movie "${filmTitle}" has been removed from WATCHED`);
+      onWatchedBtnClick();
     } catch {
       console.log(`I got an error! ${error}`);
     }
@@ -153,6 +155,7 @@ export const removeFilmFromQueue = async (filmID, filmTitle) => {
     try {
       await deleteDoc(docRef);
       Notify.info(`Movie "${filmTitle}" has been removed from QUEUE`);
+      onQueueBtnClick();
     } catch {
       console.log(`I got an error! ${error}`);
     }
