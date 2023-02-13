@@ -317,3 +317,18 @@
     opacity: 0;
   }
 }
+
+body.dark-theme {
+  .login-form {
+    background-color: #a9a9a9;
+  }
+  .input {
+    background-color: #a9a9a9;
+  }
+  .label {
+    color: var(--text-dark);
+  }
+  .form {
+    border: 1px solid transparent;
+  }
+}
