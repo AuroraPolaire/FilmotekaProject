@@ -4,6 +4,12 @@
 
 // }
 
+body {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 102px;
+}
+
 a {
   text-decoration: none;
 }
@@ -36,6 +42,6 @@ html {
 
 body {
   &.modal-open {
-      overflow: hidden;
-    }
+    overflow: hidden;
+  }
 }
