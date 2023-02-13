@@ -22,6 +22,7 @@ import {
   onWatchedBtnClick,
   onQueueBtnClick,
   auth,
+  getAuth,
   signOut,
 } from './js/firebase';
 
@@ -34,13 +35,7 @@ const queueBtn = document.querySelector('.library__queue-btn');
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
-
-monitorAuthState().then(() => {
-  setTimeout(() => {
-    // loginHeaderBtn.textContent = 'Log out';
-    onWatchedBtnClick();
-  }, 1000);
-});
+monitorAuthState();
 
 const backdrop = document.querySelector('.login-backdrop');
 const loginHeaderBtn = document.querySelector('.login-modal-btn');

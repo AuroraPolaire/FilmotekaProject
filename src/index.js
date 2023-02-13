@@ -23,6 +23,7 @@ import {
   createAccount,
   monitorAuthState,
 } from './js/firebase';
+import { onWatchedBtnClick } from './js/firebase';
 
 const themeSwitchButton = document.getElementById('theme-switch-button');
 themeSwitchButton.addEventListener('click', changeThemeOnClick);
@@ -185,8 +186,14 @@ btnLogout.addEventListener('click', logout);
 
 const closeSvgButton = document.querySelector('.modal__close-button');
 const closeSvgButtonLogIn = document.querySelector('.modal__close-buttonLogIn');
+const libraryButton = document.querySelector('.header__site-nav-link');
 
 closeSvgButton.addEventListener('click', closeModal);
 closeSvgButtonLogIn.addEventListener('click', closeModal);
+libraryButton.addEventListener('click', onClickOpenWatchedList);
+
+function onClickOpenWatchedList() {
+  onWatchedBtnClick();
+}
 
 monitorAuthState();
