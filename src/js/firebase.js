@@ -32,6 +32,7 @@ import { renderMovies } from './renderMovies';
 import { movieData } from './movieClass';
 import { onCardClick } from './onCardClick';
 import { checkThemeForLogIn } from './theme';
+import { refs } from './refs';
 
 const firebaseApp = initializeApp({
   apiKey: 'AIzaSyAQNEF1EZQq4hRQq21AEqmnTA4ysock-bY',
@@ -111,6 +112,8 @@ export const monitorAuthState = async () => {
 
 export const logout = async () => {
   await signOut(auth);
+  refs.movieContainer.innerHTML = '';
+  window.location.href = '/index.html';
 };
 
 const libraryList = document.querySelector('.trending-movies__list');
