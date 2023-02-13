@@ -87,12 +87,13 @@ export const createAccount = async () => {
 };
 
 const loginHeaderBtn = document.querySelector('.login-modal-btn');
-
+const libraryBtn = document.querySelector('.library-btn');
 // / Monitor auth state
 export const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
       // console.log(user);
+      libraryBtn.style.display = 'list-item';
       loginHeaderBtn.textContent = 'Log out';
       checkThemeForLogIn();
       showApp();
@@ -101,6 +102,7 @@ export const monitorAuthState = async () => {
       hideLoginError();
       // hideLinkError();
     } else {
+      libraryBtn.style.display = 'none';
       loginHeaderBtn.textContent = 'Log in';
       checkThemeForLogIn();
       showLoginForm();
