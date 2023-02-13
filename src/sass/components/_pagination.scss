@@ -1,20 +1,44 @@
 .tui-pagination .tui-is-selected,
 .tui-pagination strong {
-    color: #fff;
-    background: var(--hover) !important;
-    border-color: var(--hover) !important;
-    border-radius: 5px !important;
-    cursor: pointer !important;
+  color: #fff;
+  background: var(--hover) !important;
+  border-color: var(--hover) !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
 }
 
-.tui-pagination .tui-is-selected:hover  {
-    background-color: var(--hover) !important;
+.tui-pagination .tui-is-selected:hover {
+  background-color: var(--hover) !important;
 }
 
 .tui-pagination .tui-first-child.tui-is-selected {
-    border-left: 1px solid var(--hover) !important;
+  border-left: 1px solid var(--hover) !important;
 }
 
 .tui-pagination .tui-last-child.tui-is-selected {
-    border-right: 1px solid var(--hover) !important;
+  border-right: 1px solid var(--hover) !important;
+}
+
+.tui-page-btn {
+  border-radius: 5px;
+  font-weight: 500 !important;
+  margin-right: 3px;
+  margin-left: 3px;
+  border: 1px solid transparent !important;
+  height: 32px;
+  width: 32px !important;
+  transition: var(--transition-dur-and-func) !important;
+
+  &:hover,
+  &:focus {
+    color: #fff !important;
+    background-color: var(--accent) !important;
+  }
+}
+.tui-page-btn .tui-next {
+  &:hover,
+  &:focus {
+    color: #fff !important;
+    background-color: var(--accent) !important;
+  }
 }
