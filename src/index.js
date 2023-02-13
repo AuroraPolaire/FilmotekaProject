@@ -4,6 +4,7 @@ import { refs } from './js/refs';
 import { themoviedbApi } from './js/themoviedb-service';
 import { renderMovies } from './js/renderMovies';
 import { movieData } from './js/movieClass';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { runNotification } from './js/runNotification';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { runSpinner } from './js/runSpinner';
