@@ -113,7 +113,7 @@ export const monitorAuthState = async () => {
 export const logout = async () => {
   await signOut(auth);
   refs.movieContainer.innerHTML = '';
-  window.location.href = '/';
+  window.location.href = '/FilmotekaProject/index.html';
 };
 
 const libraryList = document.querySelector('.trending-movies__list');
