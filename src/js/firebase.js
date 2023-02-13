@@ -171,6 +171,7 @@ const queueListFromDb = async () => {
 };
 
 export function onWatchedBtnClick() {
+  watchedBtn.classList.add('orange-button');
   quedBtn.classList.remove('orange-button');
   watchedListFromDb()
     .then(ids => fetchMovies(ids))
@@ -183,6 +184,7 @@ export function onWatchedBtnClick() {
 }
 
 export function onQueueBtnClick() {
+  quedBtn.classList.add('orange-button');
   watchedBtn.classList.remove('orange-button');
   queueListFromDb()
     .then(ids => fetchMovies(ids))
@@ -203,7 +205,6 @@ export const monitorAuthStateLibrary = async () => {
       loginHeaderBtn.textContent = 'Log out';
 
       onWatchedBtnClick();
-      watchedBtn.classList.add('orange-button');
 
       checkThemeForLogIn();
       showApp();
