@@ -193,3 +193,25 @@ export function onQueueBtnClick() {
     })
     .catch(error => console.error(error.message));
 }
+
+export const monitorAuthStateLibrary = async () => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      loginHeaderBtn.textContent = 'Log out';
+
+      onWatchedBtnClick();
+
+      checkThemeForLogIn();
+      showApp();
+      showLoginState(user);
+
+      hideLoginError();
+    } else {
+      loginHeaderBtn.textContent = 'Log in';
+      checkThemeForLogIn();
+      showLoginForm();
+
+      lblAuthState.innerHTML = `You're not logged in.`;
+    }
+  });
+};

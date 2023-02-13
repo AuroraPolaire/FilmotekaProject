@@ -19,6 +19,7 @@ import {
   logout,
   createAccount,
   monitorAuthState,
+  monitorAuthStateLibrary,
   onWatchedBtnClick,
   onQueueBtnClick,
   auth,
@@ -35,7 +36,7 @@ const queueBtn = document.querySelector('.library__queue-btn');
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
-monitorAuthState();
+monitorAuthStateLibrary();
 
 const backdrop = document.querySelector('.login-backdrop');
 const loginHeaderBtn = document.querySelector('.login-modal-btn');
