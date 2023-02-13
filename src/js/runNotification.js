@@ -5,6 +5,7 @@ export function runNotification(moviesData) {
   const searchQuery = themoviedbApi.searchQuery.toUpperCase();
 
   if (!moviesData.total_results) {
+    refs.paginationBlock.classList.add('is-hidden');
     refs.errorNotification.innerHTML =
       'Search result is not successful. Enter the correct movie name.';
 
