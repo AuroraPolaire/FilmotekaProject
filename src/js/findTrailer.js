@@ -2,7 +2,6 @@ export function findTrailer(videos) {
     if (videos.length == 0) {
         return;
     }
-
     for (const v of videos) {
         switch (v.type) {
             case "Trailer":
@@ -12,7 +11,8 @@ export function findTrailer(videos) {
                 return v.key;
                 break;
             default:
-            return videos[0].key;
+                continue;
         }
     }
+    return videos[0].key;
 }
